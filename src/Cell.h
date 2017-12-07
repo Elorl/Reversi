@@ -1,6 +1,6 @@
 
-#ifndef EX1_CELL_H
-#define EX1_CELL_H
+#ifndef REVERSI_CELL_H
+#define REVERSI_CELL_H
 
 
 #include "color.h"
@@ -29,4 +29,4 @@ private:
 };
 
 
-#endif //EX1_CELL_H
+#endif //REVERSI_CELL_H

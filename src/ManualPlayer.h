@@ -1,6 +1,6 @@
 
-#ifndef EX1_ManualPlayer_H
-#define EX1_ManualPlayer_H
+#ifndef REVERSI_ManualPlayer_H
+#define REVERSI_ManualPlayer_H
 
 #include "color.h"
 #include "Player.h"
@@ -23,4 +23,4 @@ public:
 };
 
 
-#endif //EX1_ManualPlayer_H
+#endif //REVERSI_ManualPlayer_H

@@ -1,6 +1,6 @@
 
-#ifndef EX1_BOARD_H
-#define EX1_BOARD_H
+#ifndef REVERSI_BOARD_H
+#define REVERSI_BOARD_H
 
 
 #include "Cell.h"
@@ -26,4 +26,4 @@ private:
 };
 
 
-#endif //EX1_BOARD_H
+#endif //REVERSI_BOARD_H

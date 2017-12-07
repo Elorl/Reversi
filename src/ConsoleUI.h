@@ -1,6 +1,6 @@
 
-#ifndef EX1_CONSOLEUI_H
-#define EX1_CONSOLEUI_H
+#ifndef REVERSI_CONSOLEUI_H
+#define REVERSI_CONSOLEUI_H
 
 #include "UserInterface.h"
 
@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //EX1_CONSOLEUI_H
+#endif //REVERSI_CONSOLEUI_H

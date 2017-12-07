@@ -1,6 +1,6 @@
 
-#ifndef EX1_GAME_H
-#define EX1_GAME_H
+#ifndef REVERSI_GAME_H
+#define REVERSI_GAME_H
 
 
 #include "Board.h"
@@ -28,4 +28,4 @@ private:
 };
 
 
-#endif //EX1_GAME_H
+#endif //REVERSI_GAME_H

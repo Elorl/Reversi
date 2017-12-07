@@ -1,6 +1,6 @@
 
-#ifndef EX1_AIPLAYER_H
-#define EX1_AIPLAYER_H
+#ifndef REVERSI_AIPLAYER_H
+#define REVERSI_AIPLAYER_H
 
 
 #include "Player.h"
@@ -26,4 +26,4 @@ private:
 };
 
 
-#endif //EX1_AIPLAYER_H
+#endif //REVERSI_AIPLAYER_H

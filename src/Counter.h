@@ -1,6 +1,6 @@
 
-#ifndef EX1_COUNTER_H
-#define EX1_COUNTER_H
+#ifndef REVERSI_COUNTER_H
+#define REVERSI_COUNTER_H
 
 /**
  *  Counter.
@@ -18,4 +18,4 @@ public:
 };
 
 
-#endif //EX1_COUNTER_H
+#endif //REVERSI_COUNTER_H

@@ -1,6 +1,6 @@
 
-#ifndef EX1_USERINTERFACE_H
-#define EX1_USERINTERFACE_H
+#ifndef REVERSI_USERINTERFACE_H
+#define REVERSI_USERINTERFACE_H
 
 
 #include "Board.h"
@@ -19,4 +19,4 @@ public:
 };
 
 
-#endif //EX1_USERINTERFACE_H
+#endif //REVERSI_USERINTERFACE_H

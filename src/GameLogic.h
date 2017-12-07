@@ -1,6 +1,6 @@
 
-#ifndef EX1_GAMELOGIC_H
-#define EX1_GAMELOGIC_H
+#ifndef REVERSI_GAMELOGIC_H
+#define REVERSI_GAMELOGIC_H
 
 #include "color.h"
 #include "Board.h"
@@ -26,4 +26,4 @@ protected:
 };
 
 
-#endif //EX1_GAMELOGIC_H
+#endif //REVERSI_GAMELOGIC_H

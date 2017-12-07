@@ -1,6 +1,6 @@
 
-#ifndef EX1_PLAYER_H
-#define EX1_PLAYER_H
+#ifndef REVERSI_PLAYER_H
+#define REVERSI_PLAYER_H
 
 
 #include <iostream>
@@ -38,4 +38,4 @@ protected:
 };
 
 
-#endif //EX1_PLAYER_H
+#endif //REVERSI_PLAYER_H

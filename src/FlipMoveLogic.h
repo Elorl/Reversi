@@ -1,6 +1,6 @@
 
-#ifndef EX1_MANUALLOGIC_H
-#define EX1_MANUALLOGIC_H
+#ifndef REVERSI_MANUALLOGIC_H
+#define REVERSI_MANUALLOGIC_H
 
 
 #include "GameLogic.h"
@@ -34,4 +34,4 @@ protected:
 };
 
 
-#endif //EX1_MANUALLOGIC_H
+#endif //REVERSI_MANUALLOGIC_H
