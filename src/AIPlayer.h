@@ -1,7 +1,3 @@
-//Avner Merhavi 203090436
-
-// 28/11/17.
-//
 
 #ifndef EX1_AIPLAYER_H
 #define EX1_AIPLAYER_H

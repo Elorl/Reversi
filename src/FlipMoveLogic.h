@@ -1,8 +1,3 @@
-/******************************************
-* Student name: Elor Lichtziger
-* Student: 308541739
-* Exercise name: ex1
-******************************************/
 
 #ifndef EX1_MANUALLOGIC_H
 #define EX1_MANUALLOGIC_H

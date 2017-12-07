@@ -1,10 +1,5 @@
-/******************************************
-* Student name: Elor Lichtziger
-* Student: 308541739
-* Exercise name: ex1
-******************************************/
 
-#include "../include/FlipMoveLogic.h"
+#include "FlipMoveLogic.h"
 
 
 

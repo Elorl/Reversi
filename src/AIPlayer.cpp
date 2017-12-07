@@ -1,9 +1,5 @@
-//Avner Merhavi 203090436
 
-// 28/11/17.
-//
-
-#include "../include/AIPlayer.h"
+#include "AIPlayer.h"
 
 /*****************************************************************************************************
 * function name: constructor							        	                         *

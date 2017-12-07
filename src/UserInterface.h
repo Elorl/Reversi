@@ -1,7 +1,3 @@
-//Avner Merhavi 203090436
-
-// 29/11/17.
-//
 
 #ifndef EX1_USERINTERFACE_H
 #define EX1_USERINTERFACE_H
@@ -19,7 +15,7 @@ public:
     virtual void announceTurnPlayer(Player &player) = 0;
     virtual void noPossibleMove() = 0;
     virtual void gameOver() = 0;
-    virtual char choosePlayerType() = 0;
+    virtual int choosePlayerType() = 0;
 };
 
 

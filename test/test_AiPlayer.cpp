@@ -1,9 +1,9 @@
 #include "gtest/gtest.h"
-#include "../include/Board.h"
-#include "../include/AIPlayer.h"
-#include "../include/FlipMoveLogic.h"
-#include "../include/ManualPlayer.h"
-#include "../include/ConsoleUI.h"
+#include "../src/Board.h"
+#include "../src/AIPlayer.h"
+#include "../src/FlipMoveLogic.h"
+#include "../src/ManualPlayer.h"
+#include "../src/ConsoleUI.h"
 
 TEST(test_AiPlayer, options) {
     int *inputX , *inputY;

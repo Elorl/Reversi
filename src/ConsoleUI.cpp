@@ -1,9 +1,5 @@
-//Avner Merhavi 203090436
 
-// 29/11/17.
-//
-
-#include "../include/ConsoleUI.h"
+#include "ConsoleUI.h"
 /*****************************************************************************************************
 * function name: printBoard.        							        	                         *
 * the input:        			                                                                     *
@@ -110,20 +106,22 @@ void ConsoleUI::noPossibleMove() {
 void ConsoleUI::gameOver() {
     cout << "No possible moves. Game over!" << endl;
 }
-char ConsoleUI::choosePlayerType() {
-    char c;
-    cout << "Please choose rival type:"<<endl;
-    cout<< "(a): AI player"<< endl;
-    cout<< "(h): Human player"<<endl;
-    cin >> c;
+int ConsoleUI::choosePlayerType() {
+    int i;
+    cout << "choose an opponent type:" <<endl;
+    cout<< "1. a human local player" << endl;
+    cout<< "2. an AI player" << endl;
+    cout<< "3. a remote player" << endl;
+    cin >> i;
 
-    while(c != 'a' && c != 'h') {
+    while(i < 1 || i > 3) {
         cin.clear();
         cin.ignore('\n');
         cout << "Please choose correct type:"<<endl;
-        cout<< "(a): AI player"<< endl;
-        cout<< "(h): Human player"<<endl;
-        cin >> c;
+        cout<< "1. a human local player" << endl;
+        cout<< "2. an AI player" << endl;
+        cout<< "3. a remote player" << endl;
+        cin >> i;
     }
-    return c;
+    return i;
 }

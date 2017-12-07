@@ -1,11 +1,5 @@
-/******************************************
-* Student name: Elor Lichtziger
-* Student: 308541739
-* Exercise name: ex1
-******************************************/
 
-
-#include "../include/Cell.h"
+#include "Cell.h"
 #include <iostream>
 
 using namespace std;

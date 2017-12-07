@@ -1,11 +1,5 @@
-/******************************************
-* Student name: Elor Lichtziger
-* Student: 308541739
-* Exercise name: ex1
-******************************************/
 
-
-#include "../include/ManualPlayer.h"
+#include "ManualPlayer.h"
 
 using namespace std;
 

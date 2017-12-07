@@ -1,8 +1,3 @@
-/******************************************
-* Student name: Elor Lichtziger
-* Student: 308541739
-* Exercise name: ex1
-******************************************/
 
 #ifndef EX1_PLAYER_H
 #define EX1_PLAYER_H
@@ -22,7 +17,7 @@ class Player {
 public:
     Player();
     Player(Color color);
-    virtual ~Player();
+    ~Player();
     Color type;
     virtual int getCount();
     virtual Color getType() = 0;

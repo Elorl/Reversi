@@ -1,6 +1,3 @@
-//
-// Created by elor on 13/11/17.
-//
 
 #ifndef EX1_COLOR_H
 #define EX1_COLOR_H

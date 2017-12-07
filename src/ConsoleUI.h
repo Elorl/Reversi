@@ -1,7 +1,3 @@
-//Avner Merhavi 203090436
-
-// 29/11/17.
-//
 
 #ifndef EX1_CONSOLEUI_H
 #define EX1_CONSOLEUI_H
@@ -17,7 +13,7 @@ public:
     void announceTurnPlayer(Player &player);
     void noPossibleMove();
     void gameOver();
-    char choosePlayerType();
+    int choosePlayerType();
 
 };
 

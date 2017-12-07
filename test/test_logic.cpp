@@ -1,8 +1,8 @@
 #include "gtest/gtest.h"
-#include "../include/Board.h"
-#include "../include/FlipMoveLogic.h"
-#include "../include/ManualPlayer.h"
-#include "../include/ConsoleUI.h"
+#include "../src/Board.h"
+#include "../src/FlipMoveLogic.h"
+#include "../src/ManualPlayer.h"
+#include "../src/ConsoleUI.h"
 
 TEST(test_logic, NumOptions) {
     Board board(8, 8);

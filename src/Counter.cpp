@@ -1,11 +1,5 @@
-/******************************************
-* Student name: Elor Lichtziger
-* Student: 308541739
-* Exercise name: ex1
-******************************************/
 
-
-#include "../include/Counter.h"
+#include "Counter.h"
 #include <iostream>
 
 using namespace std;
