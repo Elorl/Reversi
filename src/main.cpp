@@ -6,6 +6,11 @@
 #include "AIPlayer.h"
 #include "ManualPlayer.h"
 #include "ConsoleUI.h"
+#include "Client.h"
+#include <utility>
+#include <libio.h>
+#include <cstdio>
+#include <cstdlib>
 
 
 /*****************************************************************************************************
@@ -14,10 +19,11 @@
 * the output: the function will print the board with the lines and rows numbers, and the boards      *
 * the function operation: the function will create a board object and will run the printBoard func   *
 *****************************************************************************************************/
-
+pair<const char*, int> readFIle();
 
 int main() {
     //ManualPlayer mP1(Black);
+
     Board b(DEFAULT_SIZE,DEFAULT_SIZE);
     Board *board = &b;
     ConsoleUI consoleUI;
@@ -35,7 +41,9 @@ int main() {
             ai =  new AIPlayer(White, board);
             p2 = ai;
         case 3:
-            //יצירת שחקן remote וקליינט
+            pair <const char*, int> pair;
+            pair = readFIle();
+            Client client(pair.first, pair.second);
     }
     FlipMoveLogic logic(board, mp1, p2);
     GameLogic *l;
@@ -49,3 +57,38 @@ int main() {
         delete p3;
     }
 }
+
+pair<const char*, int> readFIle() {
+    int i = 0, prt;
+    bool flag = false;
+    pair <const char*, int> pair;
+    FILE *settings;
+    settings = fopen("../settings.txt", "r");
+    char ip[15], port[5];
+    char buffer[1];
+    //check if the opening of the source file have been failed.
+    if (settings == NULL) {
+        printf("there is no settings file.");
+        pair.first = NULL;
+        pair.second = NULL;
+    } else {
+        while (fread(buffer, 1, 1, settings)) {
+            if(buffer[0] == ',') {
+                ip[i] = '\0';
+                flag = true;
+                i = 0;
+            } else {
+                if(!flag) {
+                    ip[i] = buffer[0];
+                    i++;
+                } else {
+                    port[i] = buffer[0];
+                    i++;
+                }
+            }
+        }
+        pair.first = ip;
+        pair.second = atoi(port);
+    }
+    return pair;
+};
