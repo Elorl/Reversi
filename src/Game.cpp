@@ -10,11 +10,11 @@ using namespace std;
 * the output: -                                                                                      *
 * the function operation:                                                                            *
 *****************************************************************************************************/
-
 Game::Game(Board *board, Player *player1, Player *player2, GameLogic *logic, UserInterface& ui) :
         board(board), player1(player1), player2(player2), logic(logic), ui(ui) {
 
 }
+
 /*****************************************************************************************************
 * function name: Run            		    					        	                         *
 * the input: -                                                                                       *

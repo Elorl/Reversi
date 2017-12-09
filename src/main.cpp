@@ -7,8 +7,6 @@
 #include "ManualPlayer.h"
 #include "ConsoleUI.h"
 #include "RemotePlayer.h"
-#include <libio.h>
-#include <cstdio>
 #include <cstdlib>
 #include <fstream>
 
@@ -20,7 +18,7 @@
 * the function operation: the function will create a board object and will run the printBoard func   *
 *****************************************************************************************************/
 pair<string, int> readFIle();
-/*
+
 int main() {
     Board b(DEFAULT_SIZE,DEFAULT_SIZE);
     Board *board = &b;
@@ -66,7 +64,7 @@ int main() {
     delete(p1);
     delete(p2);
 }
-*/
+
 /*****************************************************************************************************
 * function name: readFIle											        	                     *
 * the input: -					                                                                     *
