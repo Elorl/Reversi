@@ -43,6 +43,7 @@ int FlipMoveLogic::checkOpt(Color color) {
     }
     return counter;
 }
+
 /*****************************************************************************************************
 * function name: scanOpt            	    					        	                         *
 * the input: row, column = the point cords, originColor = player's color, negColor = rival's color.  *
@@ -55,6 +56,7 @@ void FlipMoveLogic::scanAround(int row, int column, Color originColor, Color neg
     Action action = Upside;
     scanAround(row, column, originColor, negColor, action);
 }
+
 /*****************************************************************************************************
 * function name: scanOpt            	    					        	                         *
 * the input: row, column = the point cords, originColor = player's color, negColor = rival's color.  *
@@ -90,15 +92,16 @@ void FlipMoveLogic::scanAround(int row, int column, Color playerColor, Color neg
                         }
                         //add the cell to the option array(relevant cell).
                         //this->optionsMatrix[i][j].setColor(playerColor);
-                        this->moveInPath(i, j, changeX, changeY, playerColor, negColor);
+                        this->directionScanFlip(i, j, changeX, changeY, playerColor, negColor);
                     } else {
-                        this->simulateInPath(i, j, changeX, changeY, playerColor, negColor);
+                        this->directionScan(i, j, changeX, changeY, playerColor, negColor);
                     }
                 }
             }
         }
     }
 }
+
 /*****************************************************************************************************
 * function name: directionScan            	    					        	                     *
 * the input: i, j = the point cords, changeRow and changeColumn = the change between the points,     *
@@ -108,7 +111,7 @@ void FlipMoveLogic::scanAround(int row, int column, Color playerColor, Color neg
 * the value of the DELTA(changeRow, changeColums). if the cell is what we are looking for, the       *
 * function will and the cell to the options array.                                                   *
 *****************************************************************************************************/
-void FlipMoveLogic::simulateInPath(int i, int j, int changeRow, int changeColumn, Color playerColor, Color negColor) {
+void FlipMoveLogic::directionScan(int i, int j, int changeRow, int changeColumn, Color playerColor, Color negColor) {
     bool flag = true;
     while(flag){
         i += changeRow;
@@ -125,12 +128,13 @@ void FlipMoveLogic::simulateInPath(int i, int j, int changeRow, int changeColumn
             //the cell is with negColor, so continue scanning.
         } else {
             //נניח הצבע ההתחלתי היה שחור, זה חיפש עכשיו לבנים ופגש עוד לבן, אז פועלים באופן רקורסיבי
-            simulateInPath(i, j, changeRow, changeColumn, playerColor, negColor);
+            directionScan(i, j, changeRow, changeColumn, playerColor, negColor);
         }
     }
 }
+
 /*****************************************************************************************************
-* function name: directionUpside            	    					        	                 *
+* function name: directionScanFlip            	    					        	                 *
 * the input: i, j = the point cords, changeRow and changeColumn = the change between the points,     *
 * originColor = player's color, negColor = rival's color.                                            *
 * the output: -                                                                                      *
@@ -139,7 +143,7 @@ void FlipMoveLogic::simulateInPath(int i, int j, int changeRow, int changeColumn
 * function will add the cell to the options array, so in the end of the function all the array will  *
 * upside down.                                                                                       *
 *****************************************************************************************************/
-void FlipMoveLogic::moveInPath(int i, int j, int changeRow, int changeColumn, Color originColor, Color negColor) {
+void FlipMoveLogic::directionScanFlip(int i, int j, int changeRow, int changeColumn, Color originColor, Color negColor) {
     int x = i, y = j;
     if(x < 0 || x >= this->board->getRowsNum() || y < 0 || y >= this->board->getColumnsNum()) {
         this->clearOptions();
@@ -151,7 +155,7 @@ void FlipMoveLogic::moveInPath(int i, int j, int changeRow, int changeColumn, Co
         this->optionsMatrix[i][j].setColor(originColor);
         x += changeRow;
         y += changeColumn;
-        this->moveInPath(x, y, changeRow, changeColumn, originColor, negColor);
+        this->directionScanFlip(x, y, changeRow, changeColumn, originColor, negColor);
         //find the originColor cell, so we can upside down the option array.
     } else if(this->board->boardArr[i][j].getColor() == originColor){
         for(int a = 0; a < this->board->getRowsNum(); a++) {
@@ -168,8 +172,9 @@ void FlipMoveLogic::moveInPath(int i, int j, int changeRow, int changeColumn, Co
     }
     this->clearOptions();
 }
+
 /*****************************************************************************************************
-* function name: upSideDown            	    					        	                         *
+* function name: flip            	    					        	                         *
 * the input: i, j = the cell cords, color = the new color of the upside down cell.                   *
 * the output: -                                                                                      *
 * the function operation: this function will increase/ decreade the player's points and will change  *

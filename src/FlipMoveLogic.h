@@ -20,13 +20,10 @@ public:
     virtual int checkOpt(Color color);
     virtual void scanAround(int row, int column, Color originColor, Color negColor);
     void scanAround(int row, int column, Color playerColor, Color negColor, Action act);
-    
-
 private:
-    void simulateInPath(int i, int j, int changeRow, int changeColumn, Color playerColor, Color negColor);
+    void directionScan(int i, int j, int changeRow, int changeColumn, Color playerColor, Color negColor);
     void flip(int x, int y, Color color);
-    void moveInPath(int i, int j, int changeRow, int changeColumn, Color originColor, Color negColor);
-
+    void directionScanFlip(int i, int j, int changeRow, int changeColumn, Color originColor, Color negColor);
 protected:
     int counter;
     Player *player1;

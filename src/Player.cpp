@@ -2,6 +2,7 @@
 #include "Player.h"
 
 using namespace std;
+
 /*****************************************************************************************************
 * function name: Player - constructor		    					        	                     *
 * the input: board = the player's color,                                                             *
@@ -21,6 +22,7 @@ Player::Player(Color color): type(color), counter(new Counter()), rivalCounter(N
         rivalColor = Black;
     }
 }
+
 /*****************************************************************************************************
 * function name: Player - default constructor		    					        	             *
 * the input: -                                                                                       *
@@ -33,7 +35,7 @@ Player::Player(): counter(new Counter()), rivalCounter(NULL){
 }
 
 /*****************************************************************************************************
-* function name: Player - destructor	    					        	             *
+* function name: Player - destructor	    					        	                         *
 * the input: -                                                                                       *
 * the output: -                                                                                      *
 * the function operation:                                                                            *
@@ -41,6 +43,7 @@ Player::Player(): counter(new Counter()), rivalCounter(NULL){
 Player::~Player() {
     delete counter;
 }
+
 /*****************************************************************************************************
 * function name: getCount      	    						        	                             *
 * the input: -      			                                                                     *
@@ -50,8 +53,9 @@ Player::~Player() {
 int Player::getCount() {
     return counter->get();
 }
+
 /*****************************************************************************************************
-* function name: getsimbol      	    						        	                         *
+* function name: getSimbol      	    						        	                         *
 * the input: -      			                                                                     *
 * the output: the function return the char that represent the player.                                *
 * the function operation: -                                                                          *
@@ -59,6 +63,7 @@ int Player::getCount() {
 char Player::getSymbol() {
     return symbol;
 }
+
 /*****************************************************************************************************
 * function name: increase      	    						            	                         *
 * the input: -      			                                                                     *
@@ -68,6 +73,7 @@ char Player::getSymbol() {
 void Player::increase(int k) {
     this->counter->increase(k);
 }
+
 /*****************************************************************************************************
 * function name: decrease      	    						            	                         *
 * the input: -      			                                                                     *
@@ -81,18 +87,18 @@ void Player::decrease(int k) {
 /*****************************************************************************************************
 * function name: setCount      	    						            	                         *
 * the input: -      			                                                                     *
-* the output: -                                              *
-* the function operation: setting counter value                                                                         *
+* the output: -                                                                                      *
+* the function operation: setting counter value                                                      *
 *****************************************************************************************************/
 void Player::setCount(int count) {
     counter->setCount(count);
 }
 
 /*****************************************************************************************************
-* function name: setRivalCounter      	    						            	                         *
+* function name: setRivalCounter      	    						            	                 *
 * the input: -      			                                                                     *
-* the output:                                              *
-* the function operation: setting rival counter                                                                         *
+* the output:                                                                                        *
+* the function operation: setting rival counter                                                      *
 *****************************************************************************************************/
 void Player::setRivalCounter( Counter *rivalCounter) {
     Player::rivalCounter = rivalCounter;
@@ -101,18 +107,29 @@ void Player::setRivalCounter( Counter *rivalCounter) {
 /*****************************************************************************************************
 * function name: getCount      	    						            	                         *
 * the input: -      			                                                                     *
-* the output:                                              *
-* the function operation: getting counter                                                                        *
+* the output:                                                                                        *
+* the function operation: getting counter                                                            *
 *****************************************************************************************************/
  Counter *Player::getCounter()  {
     return counter;
 }
+
 /*****************************************************************************************************
 * function name: setLogic      	    						            	                         *
 * the input: -      			                                                                     *
-* the output:                                               *
-* the function operation: setting logic                                                                    *
+* the output:                                                                                        *
+* the function operation: setting logic                                                              *
 *****************************************************************************************************/
 void Player::setLogic(GameLogic *logic) {
     Player::logic = logic;
+}
+
+/*****************************************************************************************************
+* function name: sendToServer               	    				        	                     *
+* the input:                  			                                                             *
+* the output: true = need to send the choice to the server. false = there is no need.                *
+* the function operation: the function will check if there is need to send the choice to the server. *
+*****************************************************************************************************/
+bool Player::sendToServer() {
+    return sendToSrvr;
 }

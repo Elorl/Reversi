@@ -1,9 +1,11 @@
 
 #include "RemotePlayer.h"
 
+using namespace std;
+
 /*****************************************************************************************************
-* function name: Player - constructor							        	                         *
-* the input: a color, ui object and client object.			                                                                     *
+* function name: RemotePlayer - constructor							        	                         *
+* the input: a color, ui object and a client object.			                                     *
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
@@ -28,9 +30,21 @@ Color RemotePlayer::getType() {
     return this->type;
 }
 
+/*****************************************************************************************************
+* function name: send               	    						        	                     *
+* the input: int *x int *y    			                                                             *
+* the output:                                                                                        *
+* the function operation: the function will send the int's to the server.                            *
+*****************************************************************************************************/
 void RemotePlayer::send(int *x, int *y) {
 }
 
+/*****************************************************************************************************
+* function name: chooseOption        	    						        	                     *
+* the input: int x int y    			                                                             *
+* the output:                                                                                        *
+* the function operation:the function will get the choice from the server and update the x,y pointers*
+*****************************************************************************************************/
 void RemotePlayer::chooseOption(int *x, int *y) {
     int *inputX, *inputY;
     pair<int, int> dot;

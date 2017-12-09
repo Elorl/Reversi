@@ -13,6 +13,7 @@ using namespace std;
 Counter::Counter() {
     this->count = 2;
 }
+
 /*****************************************************************************************************
 * function name: increase							                       	                         *
 * the input: an int number to add to the counter.                                                    *
@@ -22,6 +23,7 @@ Counter::Counter() {
 void Counter::increase(int number) {
     this->count += number;
 }
+
 /*****************************************************************************************************
 * function name: decrease							                       	                         *
 * the input: an int number to decrease from the counter.                                             *
@@ -34,6 +36,7 @@ void Counter::decrease(int number) {
         this->count = 0;
     }
 }
+
 /*****************************************************************************************************
 * function name: get							                          	                         *
 * the input: -                                                                                       *
@@ -44,6 +47,12 @@ int Counter::get() {
     return this->count;
 }
 
+/*****************************************************************************************************
+* function name: setCount							                          	                     *
+* the input: counter value.                                                                          *
+* the output: -                                                                                      *
+* the function the function will set the new value in the counter object.                            *
+*****************************************************************************************************/
 void Counter::setCount(int count) {
     Counter::count = count;
 }

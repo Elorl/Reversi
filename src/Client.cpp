@@ -1,6 +1,6 @@
 
 #include "Client.h"
-#include <iostream>
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -10,12 +10,25 @@
 
 using namespace std;
 
+/*****************************************************************************************************
+* function name: Client - constructor			            		        	                     *
+* the input: serverIP = ip address, serverPort = port number.       			                     *
+* the output: -                                                                                      *
+* the function operation: -                                                                          *
+*****************************************************************************************************/
 Client::Client(const char *serverIP, int serverPort): serverIP(serverIP), serverPort(serverPort), clientSocket(0) {
     cout << "Client" << endl;
 }
 
-void Client::connectToServer() {
+/*****************************************************************************************************
+* function name: connectToServer    			            		        	                     *
+* the input: -                                                         			                     *
+* the output: 1 = this computer is the first player, 2 = this computer is the second player.         *
+* the function operation: the function will connect to the server and get the number from him.       *
+*****************************************************************************************************/
+int Client::connectToServer() {
     // Create a socket point
+    int playerNumber;
     clientSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (clientSocket == -1) {
         throw "Error opening socket";
@@ -46,27 +59,55 @@ void Client::connectToServer() {
         throw "Error connecting to server";
     }
     cout << "Connected to server" << endl;
+    cout << "waiting for other player to join" << endl;
+    int n = read(clientSocket, &playerNumber, sizeof(playerNumber));
+    return playerNumber;
 }
 
-int Client::sendExercise(int arg1, char op, int arg2) {
-    // Write the exercise arguments to the socket
+/*****************************************************************************************************
+* function name: sendPoint          			            		        	                     *
+* the input: arg1 = the x cord of the cell, arg2= the y cord of the cell.                            *
+* the output: -                                                                                      *
+* the function operation: the function will send the arguments to the server by the client object.   *
+*****************************************************************************************************/
+void Client::sendPoint(int arg1, char comma, int arg2) {
     int n = write(clientSocket, &arg1, sizeof(arg1));
     if (n == -1) {
         throw "Error writing arg1 to socket";
     }
-    n = write(clientSocket, &op, sizeof(op));
+    n = write(clientSocket, &comma, sizeof(comma));
     if (n == -1) {
-        throw "Error writing op to socket";
+        throw "Error writing comma to socket";
     }
     n = write(clientSocket, &arg2, sizeof(arg2));
     if (n == -1) {
         throw "Error writing arg2 to socket";
     }
-    // Read the result from the server
-    int result;
-    n = read(clientSocket, &result, sizeof(result));
+}
+
+/*****************************************************************************************************
+* function name: readPoint          			            		        	                     *
+* the input: -                                                                                       *
+* the output: -                                                                                      *
+* the function operation: the function will read the arguments from the server by the client object. *
+*****************************************************************************************************/
+pair<int, int> Client::readPoint() {
+    int x, y;
+    char comma;
+    pair<int, int> dot;
+    int n = read(clientSocket, &x, sizeof(x));
     if (n == -1) {
-        throw "Error reading result from socket";
+        throw "Error reading x from socket";
     }
-    return result;
+    n = read(clientSocket, &comma, sizeof(comma));
+    if (n == -1) {
+        throw "Error reading comma from socket";
+    }
+    n = read(clientSocket, &y, sizeof(y));
+    if (n == -1) {
+        throw "Error reading y from socket";
+    }
+    dot.first = x;
+    dot.second = y;
+    return dot;
 }

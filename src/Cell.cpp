@@ -15,6 +15,7 @@ Cell::Cell(int x, int y, Color clr) {
     yCord = y;
     color = clr;
 }
+
 /*****************************************************************************************************
 * function name: Cell - default constructor						        	                         *
 * the input:        			                                                                     *
@@ -26,6 +27,7 @@ Cell::Cell() {
     this->yCord = 0;
     this->setColor(Empty);
 }
+
 /*****************************************************************************************************
 * function name: getColor               						        	                         *
 * the input:        			                                                                     *
@@ -35,6 +37,7 @@ Cell::Cell() {
 Color Cell::getColor() {
     return color;
 }
+
 /*****************************************************************************************************
 * function name: getX               						        	                             *
 * the input:        			                                                                     *
@@ -44,6 +47,7 @@ Color Cell::getColor() {
 int Cell::getX() {
     return xCord;
 }
+
 /*****************************************************************************************************
 * function name: setX               						        	                             *
 * the input: an int.  			                                                                     *
@@ -53,6 +57,7 @@ int Cell::getX() {
 void Cell::setX(int x) {
     this->xCord = x;
 }
+
 /*****************************************************************************************************
 * function name: getY               						        	                             *
 * the input:        			                                                                     *
@@ -62,6 +67,7 @@ void Cell::setX(int x) {
 int Cell::getY() {
     return yCord;
 }
+
 /*****************************************************************************************************
 * function name: setY               						        	                             *
 * the input: an int.  			                                                                     *
@@ -71,6 +77,7 @@ int Cell::getY() {
 void Cell::setY(int y) {
     this->yCord = y;
 }
+
 /*****************************************************************************************************
 * function name: setColor             						        	                             *
 * the input: a color.  			                                                                     *

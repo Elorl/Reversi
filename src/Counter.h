@@ -10,11 +10,10 @@ public:
     Counter();
     void increase(int number);
     void decrease(int number);
+    void setCount(int count);
     int get();
 private:
     int count;
-public:
-    void setCount(int count);
 };
 
 

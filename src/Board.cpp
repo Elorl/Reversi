@@ -35,9 +35,8 @@ Board::Board(int rows, int columns) : rowsNum(rows), colsNum(columns) {
 
     }
 
-
 /*****************************************************************************************************
-* function name: Board - destructor							        	                         *
+* function name: Board - destructor							        	                             *
 * the input:        			                                                                     *
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
@@ -48,6 +47,7 @@ Board::~Board() {
     }
     delete[] boardArr;
 }
+
 /*****************************************************************************************************
 * function name: getRowsNum.        							        	                         *
 * the input:        			                                                                     *
@@ -57,6 +57,7 @@ Board::~Board() {
 int Board::getRowsNum() {
     return rowsNum;
 }
+
 /*****************************************************************************************************
 * function name: getColumnsNum.        							        	                         *
 * the input:        			                                                                     *
@@ -67,6 +68,12 @@ int Board::getColumnsNum() {
     return colsNum;
 }
 
+/*****************************************************************************************************
+* function name: setBoardArr.        							        	                         *
+* the input: a cell object       			                                                         *
+* the output: -                                                                                      *
+* the function operation: update the boardArr.                                                       *
+*****************************************************************************************************/
 void Board::setBoardArr(Cell **updatedArr) {
     for(int i = 0; i < rowsNum; i ++) {
         for(int j = 0 ; j < colsNum; j++) {

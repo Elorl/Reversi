@@ -2,9 +2,10 @@
 #include "GameLogic.h"
 #include <iostream>
 using namespace std;
+
 /*****************************************************************************************************
 * function name: GameLogic - constructor		    					        	                 *
-* the input: board                           *
+* the input: board                                                                                   *
 * the output: -                                                                                      *
 * the function operation:                                                                            *
 *****************************************************************************************************/
@@ -30,7 +31,6 @@ GameLogic::GameLogic(Board *board){
 * the output: -                                                                                      *
 * the function operation:                                                                            *
 *****************************************************************************************************/
-
 GameLogic::~GameLogic() {
     for (int i = 0; i < board->getRowsNum(); i++) {
         delete[] optionsMatrix[i];
@@ -44,7 +44,6 @@ GameLogic::~GameLogic() {
 * the output: -                                                                                      *
 * the function operation: initialize the array of options.                                           *
 *****************************************************************************************************/
-
 void GameLogic::clearOptions() {
     for(int i = 0; i < this->board->getRowsNum(); i++) {
         for(int j = 0; j < this->board->getColumnsNum(); j++) {
@@ -71,6 +70,7 @@ bool GameLogic::isOptEmpty(int *x, int *y) {
     }
     return false;
 }
+
 /******************************************************************************************************
 * function name: getOptionsMatrix           	    					        	                  *
 * the input:                                                                                          *

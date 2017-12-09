@@ -26,15 +26,18 @@ public:
     virtual void decrease(int k = 1);
     virtual void setCount(int count);
     virtual void chooseOption(int *x, int *y) = 0;
+    virtual void send(int *x, int *y) = 0;
     void setLogic(GameLogic *logic);
     Counter *getCounter();
     void setRivalCounter(Counter *rivalCounter);
+    bool sendToServer();
 protected:
     char symbol;
     Counter* counter;
     GameLogic* logic;
     Color rivalColor;
     Counter* rivalCounter;
+    bool sendToSrvr;
 };
 
 

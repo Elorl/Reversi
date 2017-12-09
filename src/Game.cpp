@@ -61,6 +61,11 @@ void Game::run() {
             this->logic->clearOptions();
             //upside down the relevant disks.
             this->logic->scanAround(*inputX, *inputY, currentPlayer->getType(), neg);
+            //check if there is a connection to server.
+            if(currentPlayer->sendToServer() == true) {
+                //send the choice of the player to the server.
+                currentPlayer->send(inputX, inputY);
+            }
         //there is no possible option.
         } else {
             ui.noPossibleMove();
@@ -82,6 +87,12 @@ void Game::run() {
     }
     this->ui.printPoints(this->player1->getCount(), this->player2->getCount());
     this->logic->clearOptions();
+    //send to the server massage that the game is end.
+    if(currentPlayer->sendToServer() == true) {
+        int *endGame;
+        *endGame = -2;
+        currentPlayer->send(endGame, endGame);
+    }
     delete inputX;
     delete inputY;
 }

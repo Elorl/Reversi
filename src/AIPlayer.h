@@ -7,14 +7,17 @@
 #include "GameLogic.h"
 #include "Board.h"
 
+/**
+ *  AIPlayer.
+ */
 class AIPlayer : public Player {
 public:
     AIPlayer(Color color, Board* board);
     ~AIPlayer();
     Color getType();
-    virtual void chooseOption(int *x, int *y);
+    void chooseOption(int *x, int *y);
     void freeMatrix(Cell **matrix);
-
+    virtual void send(int *x, int *y);
 private:
     Board* board;
     Cell** playerOptions;

@@ -16,7 +16,6 @@ public:
     Board(int rows, int columns);
     ~Board();
     Cell** boardArr;
-
     void setBoardArr(Cell **updatedArr);
     int getRowsNum();
     int getColumnsNum();

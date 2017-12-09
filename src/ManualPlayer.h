@@ -5,6 +5,7 @@
 #include "color.h"
 #include "Player.h"
 #include "UserInterface.h"
+#include "Client.h"
 
 
 /**
@@ -14,12 +15,15 @@
  */
 
 class ManualPlayer: public Player{
-private:
-    UserInterface& ui;
 public:
     ManualPlayer(Color color, UserInterface& ui);
+    ManualPlayer(Color color, UserInterface& ui, Client* clnt);
     Color getType();
-    virtual void chooseOption(int *x, int *y);
+    void chooseOption(int *x, int *y);
+    virtual void send(int *x, int *y);
+private:
+    UserInterface& ui;
+    Client* client = NULL;
 };
 
 

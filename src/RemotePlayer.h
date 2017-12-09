@@ -7,6 +7,13 @@
 #include "Client.h"
 #include "UserInterface.h"
 
+/**
+ *  RemotePlayer.
+ *
+ *  @param color    the player's color.
+ *  @param ui       the ui object.
+ *  @param clnt     the client object.
+ */
 class RemotePlayer: public Player{
 public:
     RemotePlayer(Color color, UserInterface& ui, Client* clnt);

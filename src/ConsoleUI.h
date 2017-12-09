@@ -4,6 +4,9 @@
 
 #include "UserInterface.h"
 
+/**
+ *  ConsoleUI.
+ */
 class ConsoleUI :public UserInterface {
 public:
     void printBoard(Board& b);

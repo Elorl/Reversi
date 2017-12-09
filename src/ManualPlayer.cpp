@@ -1,21 +1,40 @@
 
 #include "ManualPlayer.h"
+#include "Client.h"
 
 using namespace std;
 
 /*****************************************************************************************************
-* function name: Player - constructor							        	                         *
-* the input: a color.			                                                                     *
+* function name: ManualPlayer - constructor							        	                         *
+* the input: a color and ui object			                                                         *
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
-ManualPlayer::ManualPlayer(Color color, UserInterface& ui): ui(ui){
-        type = color;
-        if(type == Black) {
-            symbol = 'X';
-        } else {
-            symbol = 'O';
-        }
+ManualPlayer::ManualPlayer(Color color, UserInterface& ui): ui(ui) {
+    sendToSrvr = false;
+    type = color;
+    if(type == Black) {
+        symbol = 'X';
+    } else {
+        symbol = 'O';
+    }
+}
+
+/*****************************************************************************************************
+* function name: ManualPlayer - constructor							        	                         *
+* the input: a color, ui object and a client object.			                                     *
+* the output: -                                                                                      *
+* the function operation: -                                                                          *
+*****************************************************************************************************/
+ManualPlayer::ManualPlayer(Color color, UserInterface& ui, Client* clnt): ui(ui){
+    sendToSrvr = true;
+    client = clnt;
+    type = color;
+    if(type == Black) {
+        symbol = 'X';
+    } else {
+        symbol = 'O';
+    }
 }
 
 /*****************************************************************************************************
@@ -27,9 +46,10 @@ ManualPlayer::ManualPlayer(Color color, UserInterface& ui): ui(ui){
 Color ManualPlayer::getType() {
     return this->type;
 }
+
 /*****************************************************************************************************
 * function name: chooseOption        	    						        	                     *
-* the input: int x int y    			                                                                     *
+* the input: int x int y    			                                                             *
 * the output:                                                                                        *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
@@ -46,4 +66,14 @@ void ManualPlayer::chooseOption(int *x, int *y) {
     tempY--;
     *inputX = tempX;
     *inputY = tempY;
+}
+
+/*****************************************************************************************************
+* function name: send               	    						        	                     *
+* the input: int *x int *y    			                                                             *
+* the output:                                                                                        *
+* the function operation: the function will send the int's to the server.                            *
+*****************************************************************************************************/
+void ManualPlayer::send(int *x, int *y) {
+    client->sendPoint(*x, ',', *y);
 }

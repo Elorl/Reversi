@@ -2,12 +2,13 @@
 #include "AIPlayer.h"
 
 /*****************************************************************************************************
-* function name: constructor							        	                         *
+* function name: constructor							        	                                 *
 * the input:        			                                                                     *
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
 AIPlayer::AIPlayer(Color color, Board* board): board(board){
+    sendToSrvr = false;
     type = color;
     if(type == Black) {
         symbol = 'X';
@@ -34,6 +35,7 @@ AIPlayer::AIPlayer(Color color, Board* board): board(board){
         playerOptions[i] = new Cell[board->getColumnsNum()];
     }
 }
+
 /*****************************************************************************************************
 * function name: destructor							        	                         *
 * the input:        			                                                                     *
@@ -46,11 +48,12 @@ AIPlayer::~AIPlayer() {
     freeMatrix(playerOptions);
     freeMatrix(rivalOptions);
 }
+
 /*****************************************************************************************************
-* function name: getType							        	                         *
+* function name: getType							        	                                     *
 * the input:        			                                                                     *
 * the output: -                                                                                      *
-* the function operation: returns color of player                                                                        *
+* the function operation: returns color of player                                                    *
 *****************************************************************************************************/
 Color AIPlayer::getType() {
     return type;
@@ -60,7 +63,7 @@ Color AIPlayer::getType() {
 * function name: chooseOption							        	                                 *
 * the input:        			                                                                     *
 * the output: -                                                                                      *
-* the function operation: initializing the chosen options indices                                                                      *
+* the function operation: initializing the chosen options indices                                    *
 *****************************************************************************************************/
 void AIPlayer::chooseOption(int *x, int *y) {
     Cell chosenCell = chooseMinMax();
@@ -70,14 +73,12 @@ void AIPlayer::chooseOption(int *x, int *y) {
     logic->getOptionsMatrix()[*x][*y].setColor(this->getType());
 }
 
-
 /*****************************************************************************************************
 * function name: chooseMinMax						        	                                     *
 * the input:        			                                                                     *
 * the output: -                                                                                      *
-* the function operation: computing options and chooses the best in terms of minMax                                                                     *
+* the function operation: computing options and chooses the best in terms of minMax                  *
 *****************************************************************************************************/
-
 Cell AIPlayer::chooseMinMax() {
 
     //save initial boardArr
@@ -189,6 +190,7 @@ int AIPlayer::getMaxRivalMove() {
     return maxScore;
 
 }
+
 /*****************************************************************************************************
 * function name: freeMatrix				        	                                                 *
 * the input:        			                                                                     *
@@ -200,4 +202,13 @@ void  AIPlayer::freeMatrix(Cell **matrix) {
         delete[] matrix[i];
     }
     delete[] matrix;
+}
+
+/*****************************************************************************************************
+* function name: send               	    						        	                     *
+* the input: int *x int *y    			                                                             *
+* the output:                                                                                        *
+* the function operation: the function will send the int's to the server.                            *
+*****************************************************************************************************/
+void AIPlayer::send(int *x, int *y) {
 }

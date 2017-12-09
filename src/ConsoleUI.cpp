@@ -1,5 +1,6 @@
 
 #include "ConsoleUI.h"
+
 /*****************************************************************************************************
 * function name: printBoard.        							        	                         *
 * the input:        			                                                                     *
@@ -44,7 +45,6 @@ void ConsoleUI::printBoard(Board& b) {
     }
 }
 
-
 /*****************************************************************************************************
 * function name: printPoints                              	    					        	     *
 * the input: -                                                                                       *
@@ -86,7 +86,6 @@ void ConsoleUI::printOptions(Cell** optionsMatrix, int rows, int cols) {
 * the output: -                                                                                      *
 * the function operation: print the options to the user.                                             *
 *****************************************************************************************************/
-
 void ConsoleUI::requestIndices(bool isFirstTime) {
     if(isFirstTime) {
         cout << "Please enter your move row,col:  ";
@@ -95,6 +94,12 @@ void ConsoleUI::requestIndices(bool isFirstTime) {
     cout << "Please enter correct move row,col:  ";
 }
 
+/*****************************************************************************************************
+* function name: announceTurnPlayer            		    					        	                 *
+* the input: count = the number of options to print.                                                 *
+* the output: -                                                                                      *
+* the function operation: print the options to the user.                                             *
+*****************************************************************************************************/
 void ConsoleUI::announceTurnPlayer(Player &player) {
     cout << player.getSymbol() << " turn." << endl;
 }
