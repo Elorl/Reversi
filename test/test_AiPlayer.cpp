@@ -11,8 +11,8 @@ TEST(test_AiPlayer, options) {
     inputY = new int;
     Board board(5,5);
     ConsoleUI consoleUI;
-    ManualPlayer b(Black, consoleUI);
-    AIPlayer w(White, &board);
+    ManualPlayer b(Black, consoleUI, &board);
+    AIPlayer w(White, consoleUI, &board);
     FlipMoveLogic l(&board, &b, &w);
     for(int i = 0; i < 5; i++) {
         for(int j = 0; j < 5; j++) {

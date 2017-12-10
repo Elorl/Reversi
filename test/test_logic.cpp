@@ -9,8 +9,8 @@ TEST(test_logic, NumOptions) {
     Board board2(2, 2);
     Board board3(4,4);
     ConsoleUI consoleUI;
-    ManualPlayer w(White, consoleUI);
-    ManualPlayer b(Black, consoleUI);
+    ManualPlayer w(White, consoleUI, &board);
+    ManualPlayer b(Black, consoleUI, &board);
 
     FlipMoveLogic l(&board, &b, &w);
     EXPECT_EQ(l.checkOpt(b.getType()), 4);
@@ -45,8 +45,8 @@ TEST(test_logic, NumOptions) {
 TEST(test_logic, Flips) {
     Board board(8, 8);
     ConsoleUI consoleUI;
-    ManualPlayer w(White, consoleUI);
-    ManualPlayer b(Black, consoleUI);
+    ManualPlayer w(White, consoleUI, &board);
+    ManualPlayer b(Black, consoleUI, &board);
     FlipMoveLogic l(&board, &b, &w);
     for(int i = 0; i<board.getRowsNum(); i++) {
         for(int j = 0; j<board.getColumnsNum(); j++) {
