@@ -18,7 +18,7 @@
 * the function operation: the function will create a board object and will run the printBoard func   *
 *****************************************************************************************************/
 pair<string, int> readFIle();
-/*
+
 int main() {
     Board b(DEFAULT_SIZE,DEFAULT_SIZE);
     Board *board = &b;
@@ -65,7 +65,7 @@ int main() {
     delete(p1);
     delete(p2);
 }
- */
+
 
 /*****************************************************************************************************
 * function name: readFIle											        	                     *
@@ -80,7 +80,7 @@ pair<string, int> readFIle() {
     ifstream settings;
     string ip, port;
     //open the settings file.
-    settings.open("../settings.txt");
+    settings.open("settings.txt");
     //check if the open action was succeed.
     if(settings == NULL) {
         cout << "there is no settings file.";

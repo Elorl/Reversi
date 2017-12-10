@@ -5,13 +5,13 @@ set(CMAKE_CXX_STANDARD 98)
 add_subdirectory(lib/googletest-release-1.8.0)
 include_directories(lib/googletest-release-1.8.0/googletest/include)
 
-set(SOURCE_FILES src/main.cpp src/Board.cpp src/Board.h src/ManualPlayer.cpp src/ManualPlayer.h src/Game.cpp src/Game.h src/Counter.cpp src/Counter.h src/Cell.cpp src/Cell.h src/Player.cpp src/Player.h src/color.h src/GameLogic.cpp src/GameLogic.h src/FlipMoveLogic.cpp src/FlipMoveLogic.h src/AIPlayer.cpp src/AIPlayer.h src/UserInterface.h src/ConsoleUI.cpp src/ConsoleUI.h src/Client.cpp src/Client.h)
+set(SOURCE_FILES src/client/main.cpp src/client/Board.cpp src/client/Board.h src/client/ManualPlayer.cpp src/client/ManualPlayer.h src/client/Game.cpp src/client/Game.h src/client/Counter.cpp src/client/Counter.h src/client/Cell.cpp src/client/Cell.h src/client/Player.cpp src/client/Player.h src/client/color.h src/client/GameLogic.cpp src/client/GameLogic.h src/client/FlipMoveLogic.cpp src/client/FlipMoveLogic.h src/client/AIPlayer.cpp src/client/AIPlayer.h src/client/UserInterface.h src/client/ConsoleUI.cpp src/client/ConsoleUI.h src/client/Client.cpp src/client/Client.h src/client/RemotePlayer.cpp src/client/RemotePlayer.h)
 set(TEST_FILES
         # Board Test
-        test/test_board.cpp
-        test/test_logic.cpp test/test_AiPlayer.cpp test/test_logic.cpp test/test_board.cpp test/test_AiPlayer.cpp test/gtest_main.cpp)
+        src/test/test_board.cpp
+        src/test/test_logic.cpp src/test/test_AiPlayer.cpp src/test/test_logic.cpp src/test/test_board.cpp src/test/test_AiPlayer.cpp src/test/gtest_main.cpp src/test/gtest_ManualPlayer.cpp)
 
-add_executable(Reversi ${SOURCE_FILES} src/Client.cpp src/Client.h)
-add_executable(tests test/gtest_main.cpp ${TEST_FILES} ${SOURCE_FILES} test/test_logic.cpp test/test_AiPlayer.cpp test/test_logic.cpp test/test_board.cpp test/test_AiPlayer.cpp test/gtest_main.cpp)
+add_executable(Reversi ${SOURCE_FILES} src/client/Client.cpp src/client/Client.h src/client/RemotePlayer.cpp src/client/RemotePlayer.h)
+add_executable(tests src/test/gtest_main.cpp ${TEST_FILES} ${SOURCE_FILES} src/test/test_logic.cpp src/test/test_AiPlayer.cpp src/test/test_logic.cpp src/test/test_board.cpp src/test/test_AiPlayer.cpp src/test/gtest_main.cpp src/test/gtest_ManualPlayer.cpp)
 target_link_libraries(tests gtest gtest_main)
 add_test(tests tests)

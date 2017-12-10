@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "../src/Board.h"
+#include "../client/Board.h"
 
 TEST(test_board, initialBoard) {
     Board b(8,8);

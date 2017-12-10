@@ -1,8 +1,8 @@
 #include "gtest/gtest.h"
-#include "../src/Board.h"
-#include "../src/AIPlayer.h"
-#include "../src/ManualPlayer.h"
-#include "../src/ConsoleUI.h"
+#include "../client/Board.h"
+#include "../client/AIPlayer.h"
+#include "../client/ManualPlayer.h"
+#include "../client/ConsoleUI.h"
 
 TEST(test_ManualPlayer, color){
     ConsoleUI consoleUI;
