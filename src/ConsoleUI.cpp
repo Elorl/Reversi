@@ -70,7 +70,7 @@ void ConsoleUI::printPoints(int bPoints, int wPoints) {
 * the function operation: print the options to the user.                                             *
 *****************************************************************************************************/
 void ConsoleUI::printOptions(Cell** optionsMatrix, int rows, int cols) {
-    cout << "Possible moves: "<<endl;
+    cout << "Your possible moves: ";
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j <cols; j++) {
             if (optionsMatrix[i][j].getColor() != Empty) {
@@ -78,6 +78,7 @@ void ConsoleUI::printOptions(Cell** optionsMatrix, int rows, int cols) {
             }
         }
     }
+    cout << endl << endl;
 }
 
 /*****************************************************************************************************
@@ -95,22 +96,41 @@ void ConsoleUI::requestIndices(bool isFirstTime) {
 }
 
 /*****************************************************************************************************
-* function name: announceTurnPlayer            		    					        	                 *
+* function name: announceTurnPlayer            		    					        	             *
 * the input: count = the number of options to print.                                                 *
 * the output: -                                                                                      *
 * the function operation: print the options to the user.                                             *
 *****************************************************************************************************/
-void ConsoleUI::announceTurnPlayer(Player &player) {
-    cout << player.getSymbol() << " turn." << endl;
+void ConsoleUI::announceTurnPlayer(char symbol) {
+    cout << symbol << ": It's your move." << endl;
 }
 
+/*****************************************************************************************************
+* function name: noPossibleMove                                                                      *
+* the input: -                                                                                       *
+* the output: -                                                                                      *
+* the function operation: prints an announcment that there are no possible moves.                    *
+*****************************************************************************************************/
 void ConsoleUI::noPossibleMove() {
     cout << "No possible moves. Play passes back to the other player." << endl;
 }
 
+/*****************************************************************************************************
+* function name: gameOver                                                                            *
+* the input: -                                                                                       *
+* the output: -                                                                                      *
+* the function operation: prints game over announcement.                                             *
+*****************************************************************************************************/
 void ConsoleUI::gameOver() {
     cout << "No possible moves. Game over!" << endl;
 }
+
+/*****************************************************************************************************
+* function name: choosePlayerType                                                                    *
+* the input: -                                                                                       *
+* the output: -                                                                                      *
+* the function operation: prints the options of the rival type and get the player choice             *
+*****************************************************************************************************/
 int ConsoleUI::choosePlayerType() {
     int i;
     cout << "choose an opponent type:" <<endl;
@@ -118,7 +138,6 @@ int ConsoleUI::choosePlayerType() {
     cout<< "2. an AI player" << endl;
     cout<< "3. a remote player" << endl;
     cin >> i;
-
     while(i < 1 || i > 3) {
         cin.clear();
         cin.ignore('\n');
@@ -129,4 +148,26 @@ int ConsoleUI::choosePlayerType() {
         cin >> i;
     }
     return i;
+}
+
+/*****************************************************************************************************
+* function name: waitingMoveRemote                                                                   *
+* the input: -                                                                                       *
+* the output: -                                                                                      *
+* the function operation: print to the console the massage about waiting for the second computer move*
+*****************************************************************************************************/
+void ConsoleUI::waitingMoveRemote() {
+    cout << "waiting for other player's move..." << endl;
+}
+
+/*****************************************************************************************************
+* function name: printMove                                                                           *
+* the input: -                                                                                       *
+* the output: -                                                                                      *
+* the function operation: print the move the second player have been played.                         *
+*****************************************************************************************************/
+void ConsoleUI::printMove(char symbol, int x, int y) {
+    cout << symbol << " played ";
+    cout << '(' << x << ',' << y << ')';
+    cout << endl << endl;
 }
