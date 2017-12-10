@@ -35,13 +35,11 @@ void Game::run() {
         counter = 0;
         this->logic->clearOptions();
         ui.printBoard(*board);
-        ui.announceTurnPlayer(*currentPlayer);
         //check the options the player has.
         counter = logic->checkOpt(currentPlayer->getType());
         //check if there is a possible option.
         if(counter > 0) {
             flag = false;
-            ui.printOptions(logic->getOptionsMatrix(), board->getRowsNum(), board->getColumnsNum());
             currentPlayer->chooseOption(inputX, inputY);
             //check if this is a valid chooseOption.
             if(!this->logic->isOptEmpty(inputX, inputY)) {

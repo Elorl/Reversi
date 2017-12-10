@@ -16,12 +16,13 @@
 
 class ManualPlayer: public Player{
 public:
-    ManualPlayer(Color color, UserInterface& ui);
-    ManualPlayer(Color color, UserInterface& ui, Client* clnt);
+    ManualPlayer(Color color, UserInterface& ui, Board* b);
+    ManualPlayer(Color color, UserInterface& ui, Board* b, Client* clnt);
     Color getType();
     void chooseOption(int *x, int *y);
     virtual void send(int *x, int *y);
 private:
+    Board* board;
     UserInterface& ui;
     Client* client = NULL;
 };

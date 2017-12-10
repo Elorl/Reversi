@@ -18,7 +18,7 @@
 * the function operation: the function will create a board object and will run the printBoard func   *
 *****************************************************************************************************/
 pair<string, int> readFIle();
-
+/*
 int main() {
     Board b(DEFAULT_SIZE,DEFAULT_SIZE);
     Board *board = &b;
@@ -28,12 +28,12 @@ int main() {
     int i = consoleUI.choosePlayerType();
     switch (i) {
         case 1:
-            p1 = new ManualPlayer(Black, consoleUI);
-            p2 = new ManualPlayer(White, consoleUI);
+            p1 = new ManualPlayer(Black, consoleUI, board);
+            p2 = new ManualPlayer(White, consoleUI, board);
             break;
         case 2:
-            p1 = new ManualPlayer(Black, consoleUI);
-            p2 =  new AIPlayer(White, board);
+            p1 = new ManualPlayer(Black, consoleUI, board);
+            p2 =  new AIPlayer(White, consoleUI, board);
             break;
         case 3:
             pair <string, int> pair;
@@ -43,11 +43,11 @@ int main() {
             int number = client->connectToServer();
             //check who is the first player, this computer(Manual) or the other on(Remote).
             if(number == 1) {
-                p1 = new ManualPlayer(Black, consoleUI, client);
+                p1 = new ManualPlayer(Black, consoleUI, board, client);
                 p2 = new RemotePlayer(White, consoleUI, client);
             } else if(number == 2) {
                 p1 = new RemotePlayer(Black, consoleUI, client);
-                p2 = new ManualPlayer(White, consoleUI, client);
+                p2 = new ManualPlayer(White, consoleUI, board, client);
             }
             break;
     }
@@ -55,6 +55,7 @@ int main() {
     GameLogic *l;
     l = &logic;
     p2->setLogic(l);
+    p1->setLogic(l);
     Game game(board, p1, p2, l, consoleUI);
     game.run();
     //check if there is a client object inside the players.
@@ -64,6 +65,7 @@ int main() {
     delete(p1);
     delete(p2);
 }
+ */
 
 /*****************************************************************************************************
 * function name: readFIle											        	                     *

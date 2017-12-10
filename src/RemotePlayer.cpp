@@ -50,7 +50,9 @@ void RemotePlayer::chooseOption(int *x, int *y) {
     pair<int, int> dot;
     inputX = x;
     inputY = y;
+    ui.waitingMoveRemote();
     dot = client->readPoint();
     *inputX = dot.first;
     *inputY = dot.second;
+    ui.printMove(symbol, *inputX, *inputY);
 }

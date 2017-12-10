@@ -10,7 +10,7 @@ using namespace std;
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
-ManualPlayer::ManualPlayer(Color color, UserInterface& ui): ui(ui) {
+ManualPlayer::ManualPlayer(Color color, UserInterface& ui, Board* board): ui(ui), board(board) {
     sendToSrvr = false;
     type = color;
     if(type == Black) {
@@ -26,7 +26,7 @@ ManualPlayer::ManualPlayer(Color color, UserInterface& ui): ui(ui) {
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
-ManualPlayer::ManualPlayer(Color color, UserInterface& ui, Client* clnt): ui(ui){
+ManualPlayer::ManualPlayer(Color color, UserInterface& ui,Board* board, Client* clnt): ui(ui), board(board){
     sendToSrvr = true;
     client = clnt;
     type = color;
@@ -59,7 +59,8 @@ void ManualPlayer::chooseOption(int *x, int *y) {
     int tempX, tempY;
     inputX = x;
     inputY = y;
-    cout << endl << endl;
+    ui.announceTurnPlayer(symbol);
+    ui.printOptions(logic->getOptionsMatrix(), board->getRowsNum(), board->getColumnsNum());
     ui.requestIndices();
     cin >> tempX >> dummy >> tempY;
     tempX--;
