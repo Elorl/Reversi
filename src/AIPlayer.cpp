@@ -7,7 +7,7 @@
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
-AIPlayer::AIPlayer(Color color, Board* board): board(board){
+AIPlayer::AIPlayer(Color color, UserInterface& ui,  Board* board): ui(ui), board(board){
     sendToSrvr = false;
     type = color;
     if(type == Black) {
@@ -71,6 +71,7 @@ void AIPlayer::chooseOption(int *x, int *y) {
     *y = chosenCell.getY();
     //put this single option in the logic optionsMatrix
     logic->getOptionsMatrix()[*x][*y].setColor(this->getType());
+    ui.printMove(symbol, *x, *y);
 }
 
 /*****************************************************************************************************

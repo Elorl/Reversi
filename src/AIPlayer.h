@@ -6,13 +6,14 @@
 #include "Player.h"
 #include "GameLogic.h"
 #include "Board.h"
+#include "UserInterface.h"
 
 /**
  *  AIPlayer.
  */
 class AIPlayer : public Player {
 public:
-    AIPlayer(Color color, Board* board);
+    AIPlayer(Color color, UserInterface& ui, Board* board);
     ~AIPlayer();
     Color getType();
     void chooseOption(int *x, int *y);
@@ -20,6 +21,7 @@ public:
     virtual void send(int *x, int *y);
 private:
     Board* board;
+    UserInterface& ui;
     Cell** playerOptions;
     Cell** initialBoardBackup;
     Cell** subBoardbackup;
