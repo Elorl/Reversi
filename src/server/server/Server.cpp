@@ -78,8 +78,9 @@ void Server::start() {
             status = handleClients(clientSockets[i%2], clientSockets[(i + 1)% 2]);
             if(status == 0 || status == -1 || status == -2) {
                 break;
+            } else {
+                i++;
             }
-            i++;
         }
     // Close communication with the client
         close(firstClientSocket);
@@ -111,6 +112,10 @@ int Server::handleClients(int senderSocket, int receiverSocket) {
     //check if the game was ended.
     if(x == -2 || y == -2 ) {
         return -2;
+    }
+    //check if there is no possible move for a player.
+    if(x == -3 || y == -3) {
+        return -3;
     }
     //print the input
     cout << "input: " << '(' << x << ',' << y << ')' << endl;
