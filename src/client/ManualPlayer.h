@@ -24,7 +24,7 @@ public:
 private:
     Board* board;
     UserInterface& ui;
-    Client* client = NULL;
+    Client* client;
 };
 
 

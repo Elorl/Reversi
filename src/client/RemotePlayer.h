@@ -22,7 +22,7 @@ public:
     virtual void send(int *x, int *y);
 private:
     UserInterface& ui;
-    Client* client = NULL;
+    Client* client;
 };
 
 
