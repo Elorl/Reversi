@@ -168,6 +168,6 @@ void ConsoleUI::waitingMoveRemote() {
 *****************************************************************************************************/
 void ConsoleUI::printMove(char symbol, int x, int y) {
     cout << symbol << " played ";
-    cout << '(' << x << ',' << y << ')';
+    cout << '(' << x + 1 << ',' << y + 1 << ')';
     cout << endl << endl;
 }
