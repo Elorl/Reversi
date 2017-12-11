@@ -56,3 +56,13 @@ void RemotePlayer::chooseOption(int *x, int *y) {
     *inputY = dot.second;
     ui.printMove(symbol, *inputX, *inputY);
 }
+/*****************************************************************************************************
+* function name: noMove               	    						        	                     *
+* the input:                			                                                             *
+* the output:                                                                                        *
+* the function operation: the function will send '-3' to the server that symbolize to change socket. *
+*****************************************************************************************************/
+void RemotePlayer::noMove() {
+    int x = -3;
+    send(&x, &x);
+}

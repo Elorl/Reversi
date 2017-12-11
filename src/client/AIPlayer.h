@@ -19,6 +19,7 @@ public:
     void chooseOption(int *x, int *y);
     void freeMatrix(Cell **matrix);
     virtual void send(int *x, int *y);
+    virtual void noMove();
 private:
     Board* board;
     UserInterface& ui;

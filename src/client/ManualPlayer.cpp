@@ -78,3 +78,13 @@ void ManualPlayer::chooseOption(int *x, int *y) {
 void ManualPlayer::send(int *x, int *y) {
     client->sendPoint(*x, ',', *y);
 }
+/*****************************************************************************************************
+* function name: noMove               	    						        	                     *
+* the input:                			                                                             *
+* the output:                                                                                        *
+* the function operation: the function will send '-3' to the server that symbolize to change socket. *
+*****************************************************************************************************/
+void ManualPlayer::noMove() {
+    int x = -3;
+    send(&x, &x);
+}

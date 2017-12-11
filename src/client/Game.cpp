@@ -67,6 +67,8 @@ void Game::run() {
         //there is no possible option.
         } else {
             ui.noPossibleMove();
+            //update the server, if there is one in the game about that.
+            currentPlayer->noMove();
             //if flag = true, so this is the second player that has no possible moves.
             if(flag) {
                 ui.gameOver();

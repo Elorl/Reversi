@@ -20,6 +20,7 @@ public:
     Color getType();
     void chooseOption(int *x, int *y);
     virtual void send(int *x, int *y);
+    virtual void noMove();
 private:
     UserInterface& ui;
     Client* client;

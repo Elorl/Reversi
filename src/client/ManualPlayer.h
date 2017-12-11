@@ -21,6 +21,7 @@ public:
     Color getType();
     void chooseOption(int *x, int *y);
     virtual void send(int *x, int *y);
+    virtual void noMove();
 private:
     Board* board;
     UserInterface& ui;

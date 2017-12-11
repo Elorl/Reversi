@@ -213,3 +213,11 @@ void  AIPlayer::freeMatrix(Cell **matrix) {
 *****************************************************************************************************/
 void AIPlayer::send(int *x, int *y) {
 }
+/*****************************************************************************************************
+* function name: noMove               	    						        	                     *
+* the input:                			                                                             *
+* the output:                                                                                        *
+* the function operation: the function will send '-3' to the server that symbolize to change socket. *
+*****************************************************************************************************/
+void AIPlayer::noMove() {
+}

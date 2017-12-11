@@ -27,6 +27,7 @@ public:
     virtual void setCount(int count);
     virtual void chooseOption(int *x, int *y) = 0;
     virtual void send(int *x, int *y) = 0;
+    virtual void noMove() = 0;
     void setLogic(GameLogic *logic);
     Counter *getCounter();
     void setRivalCounter(Counter *rivalCounter);
