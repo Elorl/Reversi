@@ -85,6 +85,8 @@ void ManualPlayer::send(int *x, int *y) {
 * the function operation: the function will send '-3' to the server that symbolize to change socket. *
 *****************************************************************************************************/
 void ManualPlayer::noMove() {
-    int x = -3;
-    send(&x, &x);
+    if(sendToSrvr) {
+        int x = -3;
+        send(&x, &x);
+    }
 }

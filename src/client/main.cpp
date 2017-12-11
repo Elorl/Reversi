@@ -23,6 +23,7 @@ int main() {
     Board b(DEFAULT_SIZE,DEFAULT_SIZE);
     Board *board = &b;
     ConsoleUI consoleUI;
+    AIPlayer *ai;
     Player *p1, *p2;
     Client *client;
     int i = consoleUI.choosePlayerType();
@@ -33,7 +34,8 @@ int main() {
             break;
         case 2:
             p1 = new ManualPlayer(Black, consoleUI, board);
-            p2 =  new AIPlayer(White, consoleUI, board);
+            ai =  new AIPlayer(White, consoleUI, board);
+            p2 = ai;
             break;
         case 3:
             pair <string, int> pair;
@@ -63,7 +65,12 @@ int main() {
         delete(client);
     }
     delete(p1);
-    delete(p2);
+    if(i == 2) {
+        delete(ai);
+    } else {
+        delete(p2);
+    }
+
 }
 
 
