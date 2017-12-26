@@ -26,7 +26,9 @@ int main() {
     AIPlayer *ai;
     Player *p1, *p2;
     Client *client;
+
     int i = consoleUI.choosePlayerType();
+
     switch (i) {
         case 1:
             p1 = new ManualPlayer(Black, consoleUI, board);
