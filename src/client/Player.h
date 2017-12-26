@@ -17,7 +17,7 @@ class Player {
 public:
     Player();
     Player(Color color);
-    ~Player();
+    virtual ~Player();
     Color type;
     virtual int getCount();
     virtual Color getType() = 0;
