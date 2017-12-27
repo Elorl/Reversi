@@ -123,6 +123,33 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
+server/CommandsManager.o: server/CommandsManager.cpp.o
+
+.PHONY : server/CommandsManager.o
+
+# target to build an object file
+server/CommandsManager.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/CommandsManager.cpp.o
+.PHONY : server/CommandsManager.cpp.o
+
+server/CommandsManager.i: server/CommandsManager.cpp.i
+
+.PHONY : server/CommandsManager.i
+
+# target to preprocess a source file
+server/CommandsManager.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/CommandsManager.cpp.i
+.PHONY : server/CommandsManager.cpp.i
+
+server/CommandsManager.s: server/CommandsManager.cpp.s
+
+.PHONY : server/CommandsManager.s
+
+# target to generate assembly for a file
+server/CommandsManager.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/CommandsManager.cpp.s
+.PHONY : server/CommandsManager.cpp.s
+
 server/Server.o: server/Server.cpp.o
 
 .PHONY : server/Server.o
@@ -186,6 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... server"
+	@echo "... server/CommandsManager.o"
+	@echo "... server/CommandsManager.i"
+	@echo "... server/CommandsManager.s"
 	@echo "... server/Server.o"
 	@echo "... server/Server.i"
 	@echo "... server/Server.s"

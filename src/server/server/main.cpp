@@ -9,7 +9,8 @@ int readFIle();
 
 int main() {
     int port = readFIle();
-    Server server(port);
+    CommandsManager commandsManager;
+    Server server(port, commandsManager);
     try {
         server.start();
     } catch (const char *msg) {

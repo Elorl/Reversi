@@ -1,13 +1,15 @@
 
 #include "Server.h"
 #include <sys/socket.h>
-
+#include <pthread.h>
 #include <netinet/in.h>
 #include <unistd.h>
 #include <string.h>
 #include <iostream>
+#include <vector>
 #include <stdio.h>
 #include <sys/param.h>
+#include <cstdlib>
 
 using namespace std;
 #define MAX_CONNECTED_CLIENTS 10
@@ -18,7 +20,8 @@ using namespace std;
 * the output:                                                                                        *
 * the function operation: the function will create the server.                                       *
 *****************************************************************************************************/
-Server::Server(int port): port(port), serverSocket(0) {
+Server::Server(int port, CommandsManager cM): port(port), serverSocket(0) {
+    commandsManager = cM;
     cout << "Server" << endl;
 }
 void Server::start() {
@@ -38,13 +41,13 @@ void Server::start() {
     }
     // Start listening to incoming connections
     listen(serverSocket, MAX_CONNECTED_CLIENTS);
-
+//////////////////////////////////////////////////////////////////////////
     // Define the client socket's structures
     struct sockaddr_in clientAddress;
     socklen_t clientAddressLen;
     while (true) {
         cout << "Waiting for client connections..." << endl;
-    // Accept first client connection
+        // Accept first client connection
         int firstClientSocket = accept(serverSocket, (struct
                 sockaddr *)&clientAddress, &clientAddressLen);
         cout << "Client connected" << endl;
@@ -143,4 +146,33 @@ int Server::handleClients(int senderSocket, int receiverSocket) {
 *****************************************************************************************************/
 void Server::stop() {
     close(serverSocket);
+}
+
+void Server::handleConnectClient() {
+    struct sockaddr_in clientAddress;
+    socklen_t clientAddressLen;
+    while(true) {
+        cout << "Waiting for client connections..." << endl;
+        // Accept first client connection
+        int clientSocket = accept(serverSocket, (struct
+                sockaddr *)&clientAddress, &clientAddressLen);
+        cout << "Client connected" << endl;
+        if (clientSocket == -1)
+            throw "Error on accept";
+        sockets.push_back(clientSocket);
+        int i = pthread_create(&thread, NULL, handleAccepts, &clientSocket);
+        if (i) {
+            cout << "Error: unable to create thread, " << i << endl;
+            exit(-1);
+            /////לסגור את שאר הסוקטים והתרדים או לא?
+        }
+        threads.push_back(thread);
+    }
+}
+
+void* Server::handleAccepts(void* clientSocket) {
+    int socket = (int) clientSocket;
+    string command;
+    cin >> command;
+
 }
