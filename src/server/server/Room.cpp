@@ -12,17 +12,24 @@
  * constructor.
  * @param firstSocket
  */
-Room::Room(int firstSocket) {
+Room::Room(int firstSocket): running(false) {
     sockets.push_back(firstSocket);
 }
 /**
  * returns if the room is available. when only one socket was supplied
  * @return
  */
-bool Room::isAvailable() {
-    return sockets.size() == 1;
+bool Room::isFull() {
+    return sockets.size() == 2;
 }
 
+/**
+ * check if a current activity is happening in room
+ * @return bool
+ */
+bool Room::isRunning() {
+    return running;
+}
 /**
  * adds second socket.
  * @param secondSocket
@@ -52,4 +59,20 @@ int Room::writeToSocket(char* buffer, int socket) {
  */
 vector<int> Room::getSockets() {
     return sockets;
+}
+
+/**
+ * set bollean of running as true
+ * @param running
+ */
+void Room::markRunning() {
+    running = true;
+}
+
+void Room::setThread(pthread_t thread) {
+    Room::thread = thread;
+}
+
+void Room::closeThread() {
+    close(thread);
 }

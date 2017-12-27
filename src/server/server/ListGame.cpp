@@ -23,7 +23,7 @@ int ListGame::execute(vector<void*> args) {
     for(map<string,Room*>::iterator it = rooms.begin(); it != rooms.end(); ++it) {
 
         //if game is available for joining, add to list
-        if(it->second->isAvailable()) {
+        if(!it->second->isFull()) {
             gamesList->push_back(it->first);
         }
     }
