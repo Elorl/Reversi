@@ -12,7 +12,7 @@
  * constructor.
  * @param firstSocket
  */
-Room::Room(int firstSocket): running(false) {
+Room::Room(int firstSocket): running(false), thread(NULL){
     sockets.push_back(firstSocket);
 }
 /**
@@ -69,10 +69,15 @@ void Room::markRunning() {
     running = true;
 }
 
-void Room::setThread(pthread_t thread) {
-    Room::thread = thread;
+void Room::setThread(pthread_t& thread) {
+    Room::thread = &thread;
 }
 
-void Room::closeThread() {
-    close(thread);
+void Room::closeRoom() {
+    if(running) {
+        close(*thread);
+    }
+    for(int i = 0; i < sockets.size(); i++){
+        close(sockets[i]);
+    }
 }

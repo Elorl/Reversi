@@ -203,7 +203,7 @@ equal, which is often what a user wants.
 |:------------------------------------|:--------------------------------------------------------------------------------------------------------------------|
 |`FloatNear(a_float, max_abs_error)`  |`argument` is a `float` value close to `a_float` (absolute error <= `max_abs_error`), treating two NaNs as unequal.  |
 |`NanSensitiveDoubleNear(a_double, max_abs_error)`|`argument` is a `double` value close to `a_double` (absolute error <= `max_abs_error`), treating two NaNs as equal.  |
-|`NanSensitiveFloatNear(a_float, max_abs_error)`|`argument` is a `float` value close to `a_float` (absolute error <= `max_abs_error`), treating two NaNs as equal.    |
+|`NanSensitiveFloatNear(a_float, max_abs_error)`|`argument` is a `float` value closeRoom to `a_float` (absolute error <= `max_abs_error`), treating two NaNs as equal.    |
 
 ## String Matchers ##
 

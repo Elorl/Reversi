@@ -59,7 +59,7 @@ int Client::connectToServer() {
         throw "Error connecting to server";
     }
     cout << "Connected to server" << endl;
-    cout << "waiting for other player to join" << endl;
+    cout << "waiting for other player to Join" << endl;
     int n = read(clientSocket, &playerNumber, sizeof(playerNumber));
     return playerNumber;
 }

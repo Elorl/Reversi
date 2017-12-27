@@ -3,18 +3,19 @@
 // 27/12/17.
 //
 
-#ifndef REVERSI_JOIN_H
-#define REVERSI_JOIN_H
+#ifndef REVERSI_CLOSE_H
+#define REVERSI_CLOSE_H
+
 
 #include <vector>
 #include "Command.h"
-
+#include <iostream>
 using namespace std;
 
-class Join: public Command{
+class Close : public Command{
 public:
     int execute(vector<void*> args);
 };
 
 
-#endif //REVERSI_JOIN_H
+#endif //REVERSI_CLOSE_H
