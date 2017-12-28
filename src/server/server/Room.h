@@ -21,7 +21,8 @@ public:
     bool isFull();
     bool isRunning();
     void addSocket(int secondSocket);
-    int writeToSocket(int num, int socket);
+    int writeStringToSocket(char *buffer, int socket);
+    int writeNumToSocket(int num, int socket);
     vector<int> getSockets();
     void setThread(pthread_t& thread);
     void markRunning();

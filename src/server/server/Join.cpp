@@ -9,13 +9,13 @@
 
 /**
  * adds socket to an existing room.
- * @param args 0: socket, 1: rooms map, 2: game name
+ * @param args 0: socket, 1: game name, 2: rooms map
  * @return
  */
 int Join::execute(vector<void *> args) {
     int socket  = *(int*)args[0];
-    map<string, Room*>* rooms = ((map*)args[1]);
-    string name = *(string*)args[2];
+    string name = *(string*)args[1];
+    map<string, Room*>* rooms = ((map*)args[2]);
 
     //found room - if not found , it will contain the end of the map
     Room* foundRoom = rooms->find(name)->second;
@@ -27,11 +27,13 @@ int Join::execute(vector<void *> args) {
     // add socket to room - join
     foundRoom->addSocket(socket);
     //write id numbers 1, 2 to clients
-    int stat1 = foundRoom->writeToSocket(1, foundRoom->getSockets()[0]);
+    int firstPlayerNum = 1;
+    int secondPlayerNum = 2;
+    int stat1 = foundRoom->writeNumToSocket(firstPlayerNum, foundRoom->getSockets()[0]);
     if(stat1 == -1 || stat1 == 0) {
         return stat1;
     }
-    int stat2 = foundRoom->writeToSocket(2, socket);
+    int stat2 = foundRoom->writeNumToSocket(secondPlayerNum, socket);
 
     if(stat2 == -1 || stat2 == 0) {
         return stat2;

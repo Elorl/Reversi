@@ -6,6 +6,7 @@
 #include <string>
 #include <unistd.h>
 #include <iostream>
+#include <cstring>
 #include "Room.h"
 
 /**
@@ -39,11 +40,30 @@ void Room::addSocket(int secondSocket) {
 }
 
 /**
- * writing to socket
+ * write string to socket
+ * @param buffer
  * @param socket
+ * @return success status flag
  */
-int Room::writeToSocket(char* buffer, int socket) {
-    int status = write(socket, &buffer, sizeof(num));
+int Room::writeStringToSocket(char *buffer, int socket) {
+    int status = write(socket, &buffer, strlen(buffer));
+    if(status == -1) {
+        cout<<"error writing to client socket" <<endl;
+        return -1;
+    }
+    if(status ==0) {
+        cout<< "client is disconnected"<< endl;
+        return 0;
+    }
+}
+/**
+ * writing a decimal to socket
+ * @param num
+ * @param socket
+ * @return success status flag
+ */
+int Room::writeNumToSocket(int num, int socket) {
+    int status = write(socket, &num, sizeof(num));
     if(status == -1) {
         cout<<"error writing to client socket" <<endl;
         return -1;
