@@ -5,17 +5,20 @@
 
 #include "Join.h"
 #include <map>
+#include <cstdlib>
 #include "Room.h"
 
 /**
  * adds socket to an existing room.
- * @param args 0: socket, 1: game name, 2: rooms map
- * @return
+ * @param args 0: string vector [ socket, game name]
+ *             1: rooms map
+ * @return success flag
  */
 int Join::execute(vector<void *> args) {
-    int socket  = *(int*)args[0];
-    string name = *(string*)args[1];
-    map<string, Room*>* rooms = ((map*)args[2]);
+    vector<string> stringArgs = *(vector<string>*)args[0];
+    int socket = atoi(stringArgs[0].c_str());
+    string name = stringArgs[1];
+    map<string, Room*>* rooms = ((map*)args[1]);
 
     //found room - if not found , it will contain the end of the map
     Room* foundRoom = rooms->find(name)->second;

@@ -1,3 +1,7 @@
+
+// 28/12/17.
+//
+
 //
 // Created by elor on 27/12/17.
 //
@@ -9,6 +13,7 @@
 #include <string>
 #include <vector>
 #include "Command.h"
+#include "Room.h"
 
 using namespace std;
 
@@ -16,9 +21,11 @@ class CommandsManager {
 public:
     CommandsManager();
     ~CommandsManager();
-    bool executeCommand(string command, vector<string> args);
+    int executeCommand(string command, vector<string> args);
+    void setRooms(map<string, Room*>* rooms);
 private:
-    map<string, Command *> commandsMap;
+    map<string, Command&> commandsMap;
+    map<string, Room*>* rooms;
 };
 
 
