@@ -88,7 +88,10 @@ vector<int> Room::getSockets() {
 void Room::markRunning() {
     running = true;
 }
-
+/**
+ * set thread related to room.
+ * @param thread
+ */
 void Room::setThread(pthread_t& thread) {
     Room::thread = &thread;
 }

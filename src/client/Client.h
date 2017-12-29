@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <utility>
+#include <vector>
+#include "UserInterface.h"
 
 using namespace std;
 
@@ -15,14 +17,19 @@ using namespace std;
  */
 class Client {
 public:
-    Client(const char *serverIP, int serverPort);
+    Client(const char *serverIP, int serverPort, UserInterface ui);
     int connectToServer();
+    void sendString(string str);
+    int readNumber();
     void sendPoint(int arg1, char op, int arg2);
     pair<int, int> readPoint();
+    vector<string> getGamesList();
+    int chooseRemoteGameOption();
 private:
     const char *serverIP;
     int serverPort;
     int clientSocket;
+    UserInterface ui;
 };
 
 

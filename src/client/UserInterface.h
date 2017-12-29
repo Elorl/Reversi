@@ -21,6 +21,9 @@ public:
     virtual int choosePlayerType() = 0;
     virtual void waitingMoveRemote() = 0;
     virtual void printMove(char symbol, int x, int y) = 0;
+    virtual int chooseRemoteGameOptions() = 0;
+    virtual void printString(string str) = 0;
+    virtual string getString() = 0 ;
 };
 
 

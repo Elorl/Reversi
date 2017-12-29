@@ -1,4 +1,5 @@
 
+#include <limits>
 #include "ConsoleUI.h"
 
 /*****************************************************************************************************
@@ -140,13 +141,14 @@ int ConsoleUI::choosePlayerType() {
     cin >> i;
     while(i < 1 || i > 3) {
         cin.clear();
-        cin.ignore('\n');
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout << "Please choose correct type:"<<endl;
         cout<< "1. a human local player" << endl;
         cout<< "2. an AI player" << endl;
         cout<< "3. a remote player" << endl;
         cin >> i;
     }
+    cin.clear();
     return i;
 }
 
@@ -170,4 +172,54 @@ void ConsoleUI::printMove(char symbol, int x, int y) {
     cout << symbol << " played ";
     cout << '(' << x + 1 << ',' << y + 1 << ')';
     cout << endl << endl;
+}
+
+/*****************************************************************************************************
+* function name: chooseRemoteGameOptions
+* the input: -
+* the output: returns choice number
+* the function operation: print remote options and returns choice
+*****************************************************************************************************/
+int ConsoleUI::chooseRemoteGameOptions() {
+    string gameName;
+    cout<< "Choose option:"<<endl;
+    cout<< "(1) start a new game"<<endl;
+    cout<< "(2) join an existing game"<<endl;
+    int x;
+    cin>> x;
+
+    while(x < 1 || x > 2) {
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout<< "Choose option:"<<endl;
+        cout<< "(1) start a new game"<<endl;
+        cout<< "(2) join an existing game"<<endl;
+        cin>> x;
+    }
+    cin.clear();
+
+    return x;
+}
+
+/*****************************************************************************************************
+* function name: printString
+* the input: -
+* the output: -r
+* the function operation: prints a given string
+*****************************************************************************************************/
+
+void ConsoleUI::printString(string str) {
+    cout<<str<<endl;
+}
+
+/*****************************************************************************************************
+* function name: getString
+* the input: -
+* the output: -
+* the function operation: gets string from console
+*****************************************************************************************************/
+string ConsoleUI::getString() {
+    string str;
+    cin>>str;
+    return str;
 }

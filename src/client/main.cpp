@@ -43,8 +43,9 @@ int main() {
             pair <string, int> pair;
             pair = readFIle();
             //allocate new client object
-            client = new Client(pair.first.c_str(), pair.second);
-            int number = client->connectToServer();
+            client = new Client(pair.first.c_str(), pair.second, consoleUI);
+            client->connectToServer();
+            int number = client->chooseRemoteGameOption();
             //check who is the first player, this computer(Manual) or the other on(Remote).
             if(number == 1) {
                 p1 = new ManualPlayer(Black, consoleUI, board, client);

@@ -19,6 +19,9 @@ public:
     int choosePlayerType();
     void waitingMoveRemote();
     void printMove(char symbol, int x, int y);
+    int chooseRemoteGameOptions();
+    void printString(string str);
+    string getString();
 };
 
 

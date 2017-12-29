@@ -3,6 +3,9 @@
 // 26/12/17.
 //
 
+#include <cstdlib>
+#include <unistd.h>
+#include <cstring>
 #include "ListGame.h"
 #include "map"
 #include "Room.h"
@@ -10,21 +13,41 @@
 using namespace std;
 /**
  * writing list of games to client socket
- * @param args rooms map, empty game names list
+ * @param args 0: vector with one string represent socket number
+ *             1: rooms map
  * @return 0
  */
 int ListGame::execute(vector<void*> args) {
-    //copy pointer of the list given by caller
-    vector<string>* gamesList = (vector<string>*)objects[1];
 
-    map<string, Room*> rooms = *((map*)objects[0]);
+    vector<string> stringArgs = *(vector<string>*)args[0];
+    int socket = atoi(stringArgs[0].c_str());
+    map<string, Room*>* rooms = ((map*)args[1]);
 
-    //insert games to the given list
-    for(map<string,Room*>::iterator it = rooms.begin(); it != rooms.end(); ++it) {
-
-        //if game is available for joining, add to list
-        if(!it->second->isFull()) {
-            gamesList->push_back(it->first);
+    vector<string> availableGames;
+    //insert available games to a vector
+    for(map<string,Room*>::iterator it = rooms->begin(); it != rooms->end(); ++it) {
+        Room* room = it->second;
+        //if game is not full, write it's name to client socket
+        if(!room->isFull()) {
+            availableGames.push_back(it->first);
         }
+    }
+
+    //write number of names to socket (for the reading loop in client)
+    int numberOfAvailableGames = availableGames.size();
+    int stat = write(socket,&numberOfAvailableGames, sizeof(numberOfAvailableGames));
+    if(stat == -1) {
+        cout<< "Error writing game list size to socket"<<endl;
+        return stat;
+    }
+    if(stat == 0){
+        cout << "Client is disconnected"<<endl;
+        return stat;
+    }
+
+    //write game names
+    for(int i = 0; i < numberOfAvailableGames; i++) {
+        const char* gameName = availableGames[i].c_str();
+        write(socket, gameName, strlen(gameName));
     }
 }
