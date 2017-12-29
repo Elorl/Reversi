@@ -21,14 +21,14 @@ int ListGame::execute(vector<void*> args) {
 
     vector<string> stringArgs = *(vector<string>*)args[0];
     int socket = atoi(stringArgs[0].c_str());
-    map<string, Room*>* rooms = ((map*)args[1]);
+    map<string, Room&>* rooms = ((map*)args[1]);
 
     vector<string> availableGames;
     //insert available games to a vector
-    for(map<string,Room*>::iterator it = rooms->begin(); it != rooms->end(); ++it) {
-        Room* room = it->second;
+    for(map<string,Room&>::iterator it = rooms->begin(); it != rooms->end(); ++it) {
+        Room& room = it->second;
         //if game is not full, write it's name to client socket
-        if(!room->isFull()) {
+        if(!room.isFull()) {
             availableGames.push_back(it->first);
         }
     }

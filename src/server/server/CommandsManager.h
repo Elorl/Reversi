@@ -25,7 +25,7 @@ public:
     void setRooms(map<string, Room&>* rooms);
 private:
     map<string, Command&> commandsMap;
-    map<string, Room*>* rooms;
+    map<string, Room&>* rooms;
 };
 
 
