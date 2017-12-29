@@ -19,6 +19,6 @@ int CommandsManager::executeCommand(string command, vector<string> args) {
 
 }
 
-void CommandsManager::setRooms(map<string, Room *> *roomsMap) {
+void CommandsManager::setRooms(map<string, Room &> *roomsMap) {
     rooms = roomsMap;
 }
