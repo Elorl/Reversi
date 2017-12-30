@@ -23,7 +23,7 @@ CommandsManager::CommandsManager() {
 
 }
 int CommandsManager::executeCommand(string command, vector<string> args) {
-    Command foundCommand = commandsMap.find(command)->second;
+    Command& foundCommand = commandsMap.find(command)->second;
 
     //if command does not exist
     if(commandsMap.find(command) == commandsMap.end()) {
