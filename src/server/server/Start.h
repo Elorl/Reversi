@@ -10,7 +10,7 @@
 #include <vector>
 #include "Command.h"
 
-class start : public Command {
+class Start : public Command {
 public:
     int execute(vector<void*> args);
 };

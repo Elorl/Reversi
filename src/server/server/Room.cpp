@@ -13,8 +13,9 @@
  * constructor.
  * @param firstSocket
  */
-Room::Room(int firstSocket): running(false), thread(NULL){
+Room::Room(int firstSocket, string nameRoom): running(false), thread(NULL){
     sockets.push_back(firstSocket);
+    name = nameRoom;
 }
 /**
  * returns if the room is available. when only one socket was supplied
@@ -103,4 +104,8 @@ void Room::closeRoom() {
     for(int i = 0; i < sockets.size(); i++){
         close(sockets[i]);
     }
+}
+
+string Room::getName() {
+    return name;
 }

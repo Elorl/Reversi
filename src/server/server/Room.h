@@ -15,9 +15,9 @@ private:
     vector<int> sockets;
     bool running;
     pthread_t* thread;
-
+    string name;
 public:
-    Room(int firstSocket);
+    Room(int firstSocket, string nameRoom);
     bool isFull();
     bool isRunning();
     void addSocket(int secondSocket);
@@ -27,6 +27,7 @@ public:
     void setThread(pthread_t& thread);
     void markRunning();
     void closeRoom();
+    string getName();
 };
 
 

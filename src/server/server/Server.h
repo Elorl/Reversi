@@ -12,6 +12,8 @@
 #include <vector>
 #include <pthread.h>
 #include "CommandsManager.h"
+#include <map>
+#include "Room.h"
 
 using namespace std;
 /**
@@ -23,9 +25,10 @@ class Server {
 public:
     Server(int port, CommandsManager commandsManager);
     void start();
-    void stop();
-    void *handleAccepts(void*);
-    void handleConnectClient();
+    static void *stop(void* connectStruckt);
+    static void *handleAccepts(void* connectStruckt);
+    static void *handleConnectClient(void* connectStruckt);
+    map <string, Room&> rooms;
 private:
     int port;
     int serverSocket; // the socket's file descriptor
