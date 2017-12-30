@@ -3,6 +3,19 @@
 //
 
 #include "CommandsManager.h"
+#include "Play.h"
+#include "Join.h"
+#include "Start.h"
+#include "ListGame.h"
+
+CommandsManager::CommandsManager() {
+    Play commandPlay;
+    Join commandJoin;
+    ListGame commandList;
+    Start commandStart;
+
+
+}
 
 int CommandsManager::executeCommand(string command, vector<string> args) {
     Command foundCommand = commandsMap.find(command)->second;

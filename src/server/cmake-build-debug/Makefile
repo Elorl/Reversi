@@ -123,6 +123,60 @@ server/fast:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
 
+server/ClientHandler.o: server/ClientHandler.cpp.o
+
+.PHONY : server/ClientHandler.o
+
+# target to build an object file
+server/ClientHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ClientHandler.cpp.o
+.PHONY : server/ClientHandler.cpp.o
+
+server/ClientHandler.i: server/ClientHandler.cpp.i
+
+.PHONY : server/ClientHandler.i
+
+# target to preprocess a source file
+server/ClientHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ClientHandler.cpp.i
+.PHONY : server/ClientHandler.cpp.i
+
+server/ClientHandler.s: server/ClientHandler.cpp.s
+
+.PHONY : server/ClientHandler.s
+
+# target to generate assembly for a file
+server/ClientHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ClientHandler.cpp.s
+.PHONY : server/ClientHandler.cpp.s
+
+server/Close.o: server/Close.cpp.o
+
+.PHONY : server/Close.o
+
+# target to build an object file
+server/Close.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Close.cpp.o
+.PHONY : server/Close.cpp.o
+
+server/Close.i: server/Close.cpp.i
+
+.PHONY : server/Close.i
+
+# target to preprocess a source file
+server/Close.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Close.cpp.i
+.PHONY : server/Close.cpp.i
+
+server/Close.s: server/Close.cpp.s
+
+.PHONY : server/Close.s
+
+# target to generate assembly for a file
+server/Close.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Close.cpp.s
+.PHONY : server/Close.cpp.s
+
 server/CommandsManager.o: server/CommandsManager.cpp.o
 
 .PHONY : server/CommandsManager.o
@@ -150,6 +204,114 @@ server/CommandsManager.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/CommandsManager.cpp.s
 .PHONY : server/CommandsManager.cpp.s
 
+server/Join.o: server/Join.cpp.o
+
+.PHONY : server/Join.o
+
+# target to build an object file
+server/Join.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Join.cpp.o
+.PHONY : server/Join.cpp.o
+
+server/Join.i: server/Join.cpp.i
+
+.PHONY : server/Join.i
+
+# target to preprocess a source file
+server/Join.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Join.cpp.i
+.PHONY : server/Join.cpp.i
+
+server/Join.s: server/Join.cpp.s
+
+.PHONY : server/Join.s
+
+# target to generate assembly for a file
+server/Join.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Join.cpp.s
+.PHONY : server/Join.cpp.s
+
+server/ListGame.o: server/ListGame.cpp.o
+
+.PHONY : server/ListGame.o
+
+# target to build an object file
+server/ListGame.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ListGame.cpp.o
+.PHONY : server/ListGame.cpp.o
+
+server/ListGame.i: server/ListGame.cpp.i
+
+.PHONY : server/ListGame.i
+
+# target to preprocess a source file
+server/ListGame.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ListGame.cpp.i
+.PHONY : server/ListGame.cpp.i
+
+server/ListGame.s: server/ListGame.cpp.s
+
+.PHONY : server/ListGame.s
+
+# target to generate assembly for a file
+server/ListGame.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/ListGame.cpp.s
+.PHONY : server/ListGame.cpp.s
+
+server/Play.o: server/Play.cpp.o
+
+.PHONY : server/Play.o
+
+# target to build an object file
+server/Play.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Play.cpp.o
+.PHONY : server/Play.cpp.o
+
+server/Play.i: server/Play.cpp.i
+
+.PHONY : server/Play.i
+
+# target to preprocess a source file
+server/Play.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Play.cpp.i
+.PHONY : server/Play.cpp.i
+
+server/Play.s: server/Play.cpp.s
+
+.PHONY : server/Play.s
+
+# target to generate assembly for a file
+server/Play.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Play.cpp.s
+.PHONY : server/Play.cpp.s
+
+server/Room.o: server/Room.cpp.o
+
+.PHONY : server/Room.o
+
+# target to build an object file
+server/Room.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Room.cpp.o
+.PHONY : server/Room.cpp.o
+
+server/Room.i: server/Room.cpp.i
+
+.PHONY : server/Room.i
+
+# target to preprocess a source file
+server/Room.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Room.cpp.i
+.PHONY : server/Room.cpp.i
+
+server/Room.s: server/Room.cpp.s
+
+.PHONY : server/Room.s
+
+# target to generate assembly for a file
+server/Room.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Room.cpp.s
+.PHONY : server/Room.cpp.s
+
 server/Server.o: server/Server.cpp.o
 
 .PHONY : server/Server.o
@@ -176,6 +338,33 @@ server/Server.s: server/Server.cpp.s
 server/Server.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Server.cpp.s
 .PHONY : server/Server.cpp.s
+
+server/Start.o: server/Start.cpp.o
+
+.PHONY : server/Start.o
+
+# target to build an object file
+server/Start.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Start.cpp.o
+.PHONY : server/Start.cpp.o
+
+server/Start.i: server/Start.cpp.i
+
+.PHONY : server/Start.i
+
+# target to preprocess a source file
+server/Start.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Start.cpp.i
+.PHONY : server/Start.cpp.i
+
+server/Start.s: server/Start.cpp.s
+
+.PHONY : server/Start.s
+
+# target to generate assembly for a file
+server/Start.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/server/Start.cpp.s
+.PHONY : server/Start.cpp.s
 
 server/main.o: server/main.cpp.o
 
@@ -213,12 +402,33 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... server"
+	@echo "... server/ClientHandler.o"
+	@echo "... server/ClientHandler.i"
+	@echo "... server/ClientHandler.s"
+	@echo "... server/Close.o"
+	@echo "... server/Close.i"
+	@echo "... server/Close.s"
 	@echo "... server/CommandsManager.o"
 	@echo "... server/CommandsManager.i"
 	@echo "... server/CommandsManager.s"
+	@echo "... server/Join.o"
+	@echo "... server/Join.i"
+	@echo "... server/Join.s"
+	@echo "... server/ListGame.o"
+	@echo "... server/ListGame.i"
+	@echo "... server/ListGame.s"
+	@echo "... server/Play.o"
+	@echo "... server/Play.i"
+	@echo "... server/Play.s"
+	@echo "... server/Room.o"
+	@echo "... server/Room.i"
+	@echo "... server/Room.s"
 	@echo "... server/Server.o"
 	@echo "... server/Server.i"
 	@echo "... server/Server.s"
+	@echo "... server/Start.o"
+	@echo "... server/Start.i"
+	@echo "... server/Start.s"
 	@echo "... server/main.o"
 	@echo "... server/main.i"
 	@echo "... server/main.s"

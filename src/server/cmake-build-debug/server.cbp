@@ -84,16 +84,61 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/ClientHandler.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/ClientHandler.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Close.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Close.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Command.h">
+			<Option target="server"/>
+		</Unit>
 		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.cpp">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.h">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Join.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Join.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/ListGame.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/ListGame.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Play.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Play.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Room.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Room.h">
+			<Option target="server"/>
+		</Unit>
 		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Server.cpp">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Server.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Start.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Start.h">
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/main.cpp">
