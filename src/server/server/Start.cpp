@@ -19,7 +19,7 @@ int Start::execute(vector<void*> args) {
     vector<string> stringArgs = *(vector<string>*)args[0];
     int socket = atoi(stringArgs[0].c_str());
     string name = stringArgs[1];
-    map<string, Room&>* rooms = ((map*)args[1]);
+    map<string, Room&>* rooms = ((map<string, Room&>*)args[1]);
 
     //if a game with such a name already exists
     if(rooms->find(name) != rooms->end()){

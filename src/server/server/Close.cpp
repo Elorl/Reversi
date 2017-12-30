@@ -8,16 +8,17 @@
 #include "Room.h"
 
 /**
- * close the thread, remove room from map
- * @param args - 0: room name, 1 - rooms map
+ * @param args 0: string vector [ room name]
+ *             1: rooms map
  * @return
  */
 int Close::execute(vector<void *> args) {
-    string name = *(string*)args[0];
-    map<string, Room*>* rooms = ((map*)args[1]);
+    vector<string> stringArgs = *(vector<string>*)args[0];
+    string name = stringArgs[0];
+    map<string, Room&>* rooms = ((map<string, Room&>*)args[1]);
 
     //found room - if not found , it will contain the end of the map
-    Room* foundRoom = rooms->find(name)->second;
+    Room& foundRoom = rooms->find(name)->second;
 
     //if a game with such does not exist
     if(rooms->find(name) == rooms->end()){
@@ -25,6 +26,6 @@ int Close::execute(vector<void *> args) {
     }
 
     //close room, remove from map
-    foundRoom->closeRoom();
+    foundRoom.closeRoom();
     rooms->erase(name);
 }

@@ -4,17 +4,25 @@
 //
 
 #include <map>
+#include <cstdlib>
 #include "Play.h"
 #include "Room.h"
-
+/**
+ *
+ *  @param args 0: string vector [ socket, room name, x, y]
+ *             1: rooms map
+ * @return
+ */
 int Play::execute(vector<void *> args) {
+    vector<string> stringArgs = *(vector<string>*)args[0];
+    map<string, Room&>* rooms = (map<string, Room&>*)args[1];
 
-    int destSocket = *(int*)args[0];
-    string name = *(string*)args[1];
+    int destSocket = atoi(stringArgs[0].c_str());
+    string name = stringArgs[1];
 
-    int x = *(int*)args[2];
-    int y = *(int*)args[3];
-    map<string, Room&>* rooms = (map*)args[4];
+    int x = atoi(stringArgs[2].c_str());
+    int y = atoi(stringArgs[3].c_str());
+
 
     //found room - if not found , it will contain the end of the map
     Room& foundRoom = rooms->find(name)->second;
@@ -25,6 +33,7 @@ int Play::execute(vector<void *> args) {
 
     //write move to socket
     foundRoom.writeNumToSocket(x, destSocket);
-    foundRoom.writeNumToSocket((int)",", destSocket);
+    int comma = atoi(",");
+    foundRoom.writeNumToSocket(comma, destSocket);
     foundRoom.writeNumToSocket(y, destSocket);
 }
