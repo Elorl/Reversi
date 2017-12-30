@@ -14,7 +14,7 @@
 class AIPlayer : public Player {
 public:
     AIPlayer(Color color, UserInterface& ui, Board* board);
-    ~AIPlayer();
+    virtual ~AIPlayer();
     Color getType();
     void chooseOption(int *x, int *y);
     void freeMatrix(Cell **matrix);
