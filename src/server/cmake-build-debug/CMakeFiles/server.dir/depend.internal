@@ -13,10 +13,15 @@ CMakeFiles/server.dir/server/Close.cpp.o
  /home/elor/CLionProjects/Reversi/src/server/server/Command.h
  /home/elor/CLionProjects/Reversi/src/server/server/Room.h
 CMakeFiles/server.dir/server/CommandsManager.cpp.o
+ /home/elor/CLionProjects/Reversi/src/server/server/Close.h
  /home/elor/CLionProjects/Reversi/src/server/server/Command.h
  /home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.cpp
  /home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.h
+ /home/elor/CLionProjects/Reversi/src/server/server/Join.h
+ /home/elor/CLionProjects/Reversi/src/server/server/ListGame.h
+ /home/elor/CLionProjects/Reversi/src/server/server/Play.h
  /home/elor/CLionProjects/Reversi/src/server/server/Room.h
+ /home/elor/CLionProjects/Reversi/src/server/server/Start.h
 CMakeFiles/server.dir/server/Join.cpp.o
  /home/elor/CLionProjects/Reversi/src/server/server/Command.h
  /home/elor/CLionProjects/Reversi/src/server/server/Join.cpp

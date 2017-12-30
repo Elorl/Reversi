@@ -53,6 +53,16 @@ iostream
 /home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.cpp
 CommandsManager.h
 /home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.h
+Start.h
+/home/elor/CLionProjects/Reversi/src/server/server/Start.h
+Join.h
+/home/elor/CLionProjects/Reversi/src/server/server/Join.h
+Play.h
+/home/elor/CLionProjects/Reversi/src/server/server/Play.h
+Close.h
+/home/elor/CLionProjects/Reversi/src/server/server/Close.h
+ListGame.h
+/home/elor/CLionProjects/Reversi/src/server/server/ListGame.h
 
 /home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.h
 map

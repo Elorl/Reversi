@@ -12,10 +12,15 @@ CMakeFiles/server.dir/server/Close.cpp.o: ../server/Close.h
 CMakeFiles/server.dir/server/Close.cpp.o: ../server/Command.h
 CMakeFiles/server.dir/server/Close.cpp.o: ../server/Room.h
 
+CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/Close.h
 CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/Command.h
 CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/CommandsManager.cpp
 CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/CommandsManager.h
+CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/Join.h
+CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/ListGame.h
+CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/Play.h
 CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/Room.h
+CMakeFiles/server.dir/server/CommandsManager.cpp.o: ../server/Start.h
 
 CMakeFiles/server.dir/server/Join.cpp.o: ../server/Command.h
 CMakeFiles/server.dir/server/Join.cpp.o: ../server/Join.cpp
