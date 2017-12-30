@@ -194,6 +194,7 @@ int Client::chooseRemoteGameOption() {
 
         //wait to get a player number
         playerNumber = readNumber();
+        return playerNumber;
     }
     if(x == 2){
      vector<string> gamesList = getGamesList();
@@ -210,6 +211,7 @@ int Client::chooseRemoteGameOption() {
 
         //wait to get a player number
         playerNumber = readNumber();
+        return playerNumber;
     }
 
 
