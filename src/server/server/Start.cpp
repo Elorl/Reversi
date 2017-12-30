@@ -15,7 +15,7 @@
  *             1: rooms map
  * @return success flag
  */
-int start::execute(vector<void*> args) {
+int Start::execute(vector<void*> args) {
     vector<string> stringArgs = *(vector<string>*)args[0];
     int socket = atoi(stringArgs[0].c_str());
     string name = stringArgs[1];
