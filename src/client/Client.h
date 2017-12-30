@@ -6,6 +6,7 @@
 #include <utility>
 #include <vector>
 #include "UserInterface.h"
+#include "ConsoleUI.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ using namespace std;
  */
 class Client {
 public:
-    Client(const char *serverIP, int serverPort, UserInterface ui);
+    Client(const char *serverIP, int serverPort, UserInterface& ui);
     int connectToServer();
     void sendString(string str);
     int readNumber();
@@ -29,7 +30,7 @@ private:
     const char *serverIP;
     int serverPort;
     int clientSocket;
-    UserInterface ui;
+    UserInterface& ui;
 };
 
 

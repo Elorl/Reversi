@@ -17,7 +17,7 @@ using namespace std;
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
-Client::Client(const char *serverIP, int serverPort, UserInterface ui):
+Client::Client(const char *serverIP, int serverPort, UserInterface& ui):
         serverIP(serverIP), serverPort(serverPort), clientSocket(0), ui(ui) {
     cout << "Client" << endl;
 }
