@@ -17,7 +17,7 @@ using namespace std;
 * the output: -                                                                                      *
 * the function operation: -                                                                          *
 *****************************************************************************************************/
-Client::Client(const char *serverIP, int serverPort, UserInterface ui):
+Client::Client(const char *serverIP, int serverPort, UserInterface& ui):
         serverIP(serverIP), serverPort(serverPort), clientSocket(0), ui(ui) {
     cout << "Client" << endl;
 }
@@ -194,6 +194,7 @@ int Client::chooseRemoteGameOption() {
 
         //wait to get a player number
         playerNumber = readNumber();
+        return playerNumber;
     }
     if(x == 2){
      vector<string> gamesList = getGamesList();
@@ -210,6 +211,7 @@ int Client::chooseRemoteGameOption() {
 
         //wait to get a player number
         playerNumber = readNumber();
+        return playerNumber;
     }
 
 
