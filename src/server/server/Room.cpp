@@ -99,7 +99,7 @@ void Room::setThread(pthread_t& thread) {
 
 void Room::closeRoom() {
     if(running) {
-        close(*thread);
+        pthread_cancel(*thread);
     }
     for(int i = 0; i < sockets.size(); i++){
         close(sockets[i]);
