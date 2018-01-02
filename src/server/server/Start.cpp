@@ -30,4 +30,6 @@ int Start::execute(vector<void*> args) {
     //create a room and insert to the given map
     Room* room = new Room(socket, name);
     rooms->insert(pair<string, Room&>(name, *room));
+
+    return 1;
 }

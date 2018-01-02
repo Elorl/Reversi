@@ -50,4 +50,5 @@ int ListGame::execute(vector<void*> args) {
         const char* gameName = availableGames[i].c_str();
         write(socket, gameName, strlen(gameName));
     }
+    return 1;
 }
