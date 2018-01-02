@@ -91,7 +91,9 @@ int Client::readNumber() {
     if(n == -1) {
         throw "Error reading number from socket";
     }
-
+    if (n == 0) {
+        throw "server closed!";
+    }
     return number;
 }
 /*****************************************************************************************************
@@ -195,12 +197,6 @@ int Client::chooseRemoteGameOption() {
 
             //wait to get a player number
             playerNumber = readNumber();
-            if (playerNumber == 0) {
-                throw "server closed!";
-            }
-            if (playerNumber == -1) {
-                throw "there was an error with the server!";
-            }
             return playerNumber;
         }
         if(x == 2){
@@ -213,12 +209,6 @@ int Client::chooseRemoteGameOption() {
 
             //wait to get a player number
             playerNumber = readNumber();
-            if (playerNumber == 0) {
-                throw "server closed!";
-            }
-            if (playerNumber == -1) {
-                throw "there was an error with the server!";
-            }
             return playerNumber;
         }
 
