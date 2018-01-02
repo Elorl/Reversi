@@ -28,7 +28,8 @@ void ClientHandler::handle() {
     for(iter = rooms->begin(); iter != rooms->end(); iter++) {
         Room r = iter->second;
         bool running = r.isRunning();
-        if(!running) {
+        bool full = r.isFull();
+        if((!running) && (full)) {
             r.markRunning();
             pthread_t thread;
             roomPlayer.room = &r;

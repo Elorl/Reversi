@@ -68,14 +68,13 @@ void Server::start() {
         exit(-1);
     }
     args->threadsList->push_back(thread);
-    /*
+
     pthread_t exitThread;
-    int j = pthread_create(&exitThread, NULL, stop, &args);
+    int j = pthread_create(&exitThread, NULL, stop, args);
     if (j) {
         cout << "Error: unable to create thread, " << j << endl;
         exit(-1);
     }
-     */
     pthread_exit(NULL);
 }
 
@@ -88,7 +87,7 @@ void Server::start() {
 void* Server::stop(void *connectStruckt) {
     struct Connect *arg = (struct Connect *) connectStruckt;
     map<string, Room&>::const_iterator iter;
-    char *command;
+    char command[5];
     cin >> command;
     if(strcmp(command, "exit") == 0) {
         for(iter = arg->roomList->begin(); iter != arg->roomList->end(); iter++) {
