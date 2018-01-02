@@ -161,10 +161,11 @@ void* Server::handleAccepts(void* connectStruct) {
     string command(token);
     char n = '\n';
     char *newLine = &n;
-    //לוודא שזה NULL ולא ההמשך של cmnd
     token = strtok(NULL, newLine);
-    string temp(token);
-    args.push_back(temp);
+    if(token != NULL) {
+        string temp(token);
+        args.push_back(temp);
+    }
     check = arg->cManager->executeCommand(command, args);
     //so the command is not valid
     if(check < 0) {
