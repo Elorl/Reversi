@@ -143,31 +143,34 @@ void* Server::handleAccepts(void* connectStruct) {
     string sckt = s.str();
     args.push_back(sckt);
     char buffer[50];
-    do {
-        //read the command from the socket
-        int status = read(socket, buffer, sizeof(buffer));
-        if (status == -1) {
-            cout << "Error reading current player move" << endl;
-            pthread_exit(&status);
-        }
-        if (status == 0) {
-            cout << "Current Player is disconnected" << endl;
-            pthread_exit(&status);
-        }
-        char c = ' ';
-        const char *space = &c;
-        char *token;
-        //split the string with the space char.
-        token = strtok(buffer, space);
-        string command(token);
-        char n = '\n';
-        char *newLine = &n;
-        //לוודא שזה NULL ולא ההמשך של cmnd
-        token = strtok(NULL, newLine);
-        string temp(token);
-        args.push_back(temp);
-        check = arg->cManager->executeCommand(command, args);
-    } while (check == -1);
-    ClientHandler clientHandler(arg->cManager, arg->roomList);
-    clientHandler.handle();
+    //read the command from the socket
+    int status = read(socket, buffer, sizeof(buffer));
+    if (status == -1) {
+        cout << "Error reading current player move" << endl;
+        pthread_exit(&status);
+    }
+    if (status == 0) {
+        cout << "Current Player is disconnected" << endl;
+        pthread_exit(&status);
+    }
+    char c = ' ';
+    const char *space = &c;
+    char *token;
+    //split the string with the space char.
+    token = strtok(buffer, space);
+    string command(token);
+    char n = '\n';
+    char *newLine = &n;
+    //לוודא שזה NULL ולא ההמשך של cmnd
+    token = strtok(NULL, newLine);
+    string temp(token);
+    args.push_back(temp);
+    check = arg->cManager->executeCommand(command, args);
+    //so the command is not valid
+    if(check < 0) {
+        status = write(socket, &check, sizeof(check));
+    } else {
+        ClientHandler clientHandler(arg->cManager, arg->roomList);
+        clientHandler.handle();
+    }
 }

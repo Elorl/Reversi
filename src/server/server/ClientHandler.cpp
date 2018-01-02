@@ -48,6 +48,7 @@ void ClientHandler::handle() {
 void* ClientHandler::run(void *r) {
     struct RoomPlayer *roomPlayer = (struct RoomPlayer *) r;
     Room *room = roomPlayer->room;
+    room->sendNumbersToClients();
     int clientSockets[2];
     clientSockets[0] = room->getSockets()[0];
     clientSockets[1] = room->getSockets()[1];
