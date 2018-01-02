@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include "Room.h"
 
+#define ROOM_UNAVAILABLE -5
 /**
  * adds socket to an existing room.
  * @param args 0: string vector [ socket, game name]
@@ -24,7 +25,7 @@ int Join::execute(vector<void *> args) {
     Room& foundRoom = rooms->find(name)->second;
     //if a game with such does not exist, or game is already full
     if(rooms->find(name) == rooms->end() || foundRoom.isFull()){
-        return -1;
+        return ROOM_UNAVAILABLE;
     }
 
     // add socket to room - join

@@ -8,6 +8,7 @@
 #include "Start.h"
 #include "Room.h"
 
+#define NAME_ALREADY_EXISTS -5
 /**
  * opens a room with given name. adds first client socket to room.Zz
  * adds socket to an existing room.
@@ -23,7 +24,7 @@ int Start::execute(vector<void*> args) {
 
     //if a game with such a name already exists
     if(rooms->find(name) != rooms->end()){
-        return -1;
+        return NAME_ALREADY_EXISTS;
     }
 
     //create a room and insert to the given map
