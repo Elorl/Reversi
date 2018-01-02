@@ -28,4 +28,5 @@ int Close::execute(vector<void *> args) {
     //close room, remove from map
     foundRoom.closeRoom();
     rooms->erase(name);
+    return 1;
 }

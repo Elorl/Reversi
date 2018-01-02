@@ -36,4 +36,6 @@ int Play::execute(vector<void *> args) {
     int comma = atoi(",");
     foundRoom.writeNumToSocket(comma, destSocket);
     foundRoom.writeNumToSocket(y, destSocket);
+
+    return 1;
 }
