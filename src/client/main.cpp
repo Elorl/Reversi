@@ -45,6 +45,8 @@ int main() {
             //allocate new client object
             client = new Client(pair.first.c_str(), pair.second, consoleUI);
             client->connectToServer();
+            consoleUI.printString("Connected to server");
+            consoleUI.printString("\n");
             int number = client->chooseRemoteGameOption();
             //check who is the first player, this computer(Manual) or the other on(Remote).
             if(number == 1) {
