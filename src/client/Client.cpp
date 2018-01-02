@@ -8,6 +8,7 @@
 #include <netdb.h>
 #include <string.h>
 #include <unistd.h>
+#define ILLEGAL_CHOICE -5
 
 using namespace std;
 
@@ -184,10 +185,16 @@ vector<string> Client::getGamesList() {
 * the function operation: using ui to print remote game options and fulfils user choice
 *****************************************************************************************************/
 int Client::chooseRemoteGameOption() {
-    int x = ui.chooseRemoteGameOptions();
+    int choice;
     int playerNumber;
+    int choiceLegality;
     do {
-        if(x == 1) {
+        //set legality as legal, for re-looping when needed
+        choiceLegality = 1;
+        choice = ui.chooseRemoteGameOptions();
+
+        //start
+        if(choice == 1) {
             string command = "start ";
             ui.printString("please choose a game name");
             string name = ui.getString();
@@ -197,11 +204,40 @@ int Client::chooseRemoteGameOption() {
 
             //wait to get a player number
             playerNumber = readNumber();
-            return playerNumber;
+            if (playerNumber == 0) {
+                throw "server closed!";
+            }
+            if (playerNumber == -1) {
+                throw "there was an error with the server!";
+            }
+            if(playerNumber == ILLEGAL_CHOICE) {
+                ui.printString("a game with an identical name already exists");
+                choiceLegality == ILLEGAL_CHOICE;
+                //reconnect, reprint menu
+                connectToServer();
+                continue;
+            }
+            //if all correct
+            return  playerNumber;
         }
-        if(x == 2){
+        //join
+        if(choice == 2){
 
-            //request a game choice
+            // print list of games
+            vector<string> gamesList = getGamesList();
+            //if no rooms is available, return to main the flag for reprinting menu
+            if(gamesList.empty()) {
+                ui.printString("no available games to join.");
+                choiceLegality == ILLEGAL_CHOICE;
+                //reconnect, reprint menu
+                connectToServer();
+                continue;
+            }
+            ui.printString("please choose a game to join:");
+            for(int i = 0; i < gamesList.size(); i++) {
+                ui.printString(gamesList[i]);
+            }
+            //get a game choice
             string name = ui.getString();
             string command = "join ";
             command += name;
@@ -209,16 +245,37 @@ int Client::chooseRemoteGameOption() {
 
             //wait to get a player number
             playerNumber = readNumber();
+            if (playerNumber == 0) {
+                throw "server closed!";
+            }
+            if (playerNumber == -1) {
+                throw "there was an error with the server!";
+            }
+            if(playerNumber == ILLEGAL_CHOICE) {
+                ui.printString("there is no available game with the given name");
+                choiceLegality == ILLEGAL_CHOICE;
+
+                //reconnect, reprint menu
+                connectToServer();
+                continue;
+            }
+            //if all correct
             return playerNumber;
         }
 
-        if(x == 3) {
+        //list of games
+        if(choice == 3) {
             vector<string> gamesList = getGamesList();
+            if(gamesList.empty()) {
+                ui.printString("there is no available room to join:");
+            }
             ui.printString("please choose a game to join:");
             for(int i = 0; i < gamesList.size(); i++) {
                 ui.printString(gamesList[i]);
             }
+            //reconnect to server
+            connectToServer();
         }
-    } while(x == 3);
+    } while(choice == 3 || choiceLegality == ILLEGAL_CHOICE);
 
 }
