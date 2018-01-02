@@ -48,7 +48,7 @@ int ListGame::execute(vector<void*> args) {
     //write game names
     for(int i = 0; i < numberOfAvailableGames; i++) {
         const char* gameName = availableGames[i].c_str();
-        write(socket, gameName, strlen(gameName));
+        write(socket, gameName, strlen(gameName) + 1);
     }
     return 1;
 }

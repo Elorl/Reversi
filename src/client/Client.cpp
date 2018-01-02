@@ -238,6 +238,9 @@ int Client::chooseRemoteGameOption() {
             for(int i = 0; i < gamesList.size(); i++) {
                 ui.printString(gamesList[i]);
             }
+            //after print request, reconnect
+            connectToServer();
+
             //get a game choice
             string name = ui.getString();
             string command = "join ";
