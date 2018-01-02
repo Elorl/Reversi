@@ -1,7 +1,4 @@
-//Avner Merhavi 203090436
 
-// 05/12/17.
-//
 
 #ifndef SERVER_SERVER_H
 #define SERVER_SERVER_H
@@ -31,11 +28,10 @@ public:
     map <string, Room&> rooms;
 private:
     int port;
-    int serverSocket; // the socket's file descriptor
+    int *serverSocket; // the socket's file descriptor
     int clientSockets[2];
-    int handleClients(int senderSocket, int receiverSocket);
     vector <int> sockets;
-    vector <pthread_t> threads;
+    vector <pthread_t> *threads = new vector <pthread_t>;
     pthread_t thread;
     CommandsManager commandsManager;
 };

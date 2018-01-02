@@ -1,4 +1,5 @@
 
+
 #include "Server.h"
 #include <sys/socket.h>
 #include <pthread.h>
@@ -14,7 +15,8 @@
 #include "ClientHandler.h"
 
 struct Connect {
-    int *sock;
+    int *serverSock;
+    int *clientSock;
     vector <int> *socketList;
     vector <pthread_t> *threadsList;
     CommandsManager *cManager;
@@ -30,22 +32,23 @@ using namespace std;
 * the output:                                                                                        *
 * the function operation: the function will create the server.                                       *
 *****************************************************************************************************/
-Server::Server(int port, CommandsManager cM): port(port), serverSocket(0) {
+Server::Server(int port, CommandsManager cM): port(port) {
+    serverSocket = new int;
     commandsManager = cM;
     commandsManager.setRooms(&rooms);
     cout << "Server" << endl;
 }
 void Server::start() {
-    Connect args;
-    args.sock = &serverSocket;
-    args.socketList = &sockets;
-    args.threadsList = &threads;
-    args.cManager = &commandsManager;
-    args.roomList = &rooms;
+    Connect *args = new Connect;
+    args->serverSock = serverSocket;
+    args->socketList = &sockets;
+    args->threadsList = threads;
+    args->cManager = &commandsManager;
+    args->roomList = &rooms;
 
     // Create a socket point
-    serverSocket = socket(AF_INET, SOCK_STREAM, 0);
-    if (serverSocket == -1) {
+    *serverSocket = socket(AF_INET, SOCK_STREAM, 0);
+    if (*serverSocket == -1) {
         throw "Error opening socket";
     }
     // Assign a local address to the socket
@@ -54,73 +57,28 @@ void Server::start() {
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = INADDR_ANY;
     serverAddress.sin_port = htons(port);
-    if (bind(serverSocket, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) == -1) {
+    if (bind(*serverSocket, (struct sockaddr *)&serverAddress, sizeof(serverAddress)) == -1) {
         throw "Error on binding";
     }
     // Start listening to incoming connections
-    listen(serverSocket, MAX_CONNECTED_CLIENTS);
-    int i = pthread_create(&thread, NULL, handleConnectClient, &args);
+    listen(*serverSocket, MAX_CONNECTED_CLIENTS);
+    int i = pthread_create(&thread, NULL, handleConnectClient, args);
     if (i) {
         cout << "Error: unable to create thread, " << i << endl;
         exit(-1);
     }
-    threads.push_back(thread);
+    args->threadsList->push_back(thread);
+    /*
     pthread_t exitThread;
     int j = pthread_create(&exitThread, NULL, stop, &args);
     if (j) {
         cout << "Error: unable to create thread, " << j << endl;
         exit(-1);
     }
+     */
     pthread_exit(NULL);
 }
 
-/*****************************************************************************************************
-* function name: handleClients											                             *
-* the input: -					                                                                     *
-* the output:                                                                                        *
-* the function operation: the function will Handle requests from a specific client                   *
-*****************************************************************************************************/
-/*
-int Server::handleClients(int senderSocket, int receiverSocket) {
-    int x, y;
-    char comma;
-    int status1 = read(senderSocket, &x, sizeof(x));
-    int status2 = read(senderSocket, &comma, sizeof(comma));
-    int status3 = read(senderSocket, &y, sizeof(y));
-    if (status1 == -1 || status2 == -1 || status3 == -1) {
-        cout << "Error reading current player move" << endl;
-        return -1;
-    }
-    if(status1 == 0 || status2 == 0 || status3 == 0) {
-        cout << "Current Player is disconnected" << endl;
-        return 0;
-    }
-    //check if the game was ended.
-    if(x == -2 || y == -2 ) {
-        return -2;
-    }
-    //check if there is no possible move for a player.
-    if(x == -3 || y == -3) {
-        return -3;
-    }
-    //print the input
-    cout << "input: " << '(' << x << ',' << y << ')' << endl;
-    status1 = write(receiverSocket, &x, sizeof(x));
-    status2 = write(receiverSocket, &comma, sizeof(comma));
-    status3 = write(receiverSocket, &y, sizeof(y));
-    if (status1 == -1 || status2 == -1 || status3 == -1) {
-        cout << "Error writing player move to it's rival" << endl;
-        return -1;
-    }
-    if(status1 == 0 || status2 == 0 || status3 == 0) {
-        cout << "rival is disconnected" << endl;
-        return 0;
-    }
-    //print the output
-    cout << "Output: " << '(' << x << ',' << y << ')' << endl;
-    return 1;
-}
-*/
 /*****************************************************************************************************
 * function name: stop											        	                         *
 * the input: -					                                                                     *
@@ -150,22 +108,23 @@ void* Server::stop(void *connectStruckt) {
     }
 }
 
-void* Server::handleConnectClient(void* connectStruckt) {
-    struct Connect *arg = (struct Connect *) connectStruckt;
+void* Server::handleConnectClient(void* connectStruct) {
+    struct Connect *arg = (struct Connect *) connectStruct;
+    int *clientSocket = new int;
     pthread_t pthread;
     // Define the client socket's structures
-    struct sockaddr_in clientAddress;
-    socklen_t clientAddressLen;
+    struct sockaddr_in *clientAddress;
+    socklen_t *clientAddressLen;
     while(true) {
         cout << "Waiting for client connections..." << endl;
         // Accept first client connection
-        int clientSocket = accept(*arg->sock, (struct
-                sockaddr *)&clientAddress, &clientAddressLen);
+        *clientSocket = accept(*arg->serverSock, (struct sockaddr *)clientAddress, clientAddressLen);
         cout << "Client connected" << endl;
-        if (clientSocket == -1)
+        if (*clientSocket == -1)
             throw "Error on accept";
-        arg->socketList->push_back(clientSocket);
-        int i = pthread_create(&pthread, NULL, handleAccepts, &clientSocket);
+        arg->socketList->push_back(*clientSocket);
+        arg->clientSock = clientSocket;
+        int i = pthread_create(&pthread, NULL, handleAccepts, arg);
         if (i) {
             cout << "Error: unable to create thread, " << i << endl;
             exit(-1);
@@ -175,19 +134,19 @@ void* Server::handleConnectClient(void* connectStruckt) {
     }
 }
 
-void* Server::handleAccepts(void* connectStruckt) {
-    struct Connect *arg = (struct Connect *) connectStruckt;
+void* Server::handleAccepts(void* connectStruct) {
+    struct Connect *arg = (struct Connect *) connectStruct;
     vector<string> args;
     int check;
-    int socket = *arg->sock;
+    int socket = *arg->clientSock;
     stringstream s;
     s << socket;
     string sckt = s.str();
     args.push_back(sckt);
-    char *cmnd;
+    char buffer[50];
     do {
         //read the command from the socket
-        int status = read(socket, cmnd, sizeof(cmnd));
+        int status = read(socket, buffer, sizeof(buffer));
         if (status == -1) {
             cout << "Error reading current player move" << endl;
             pthread_exit(&status);
@@ -200,7 +159,7 @@ void* Server::handleAccepts(void* connectStruckt) {
         const char *space = &c;
         char *token;
         //split the string with the space char.
-        token = strtok(cmnd, space);
+        token = strtok(buffer, space);
         string command(token);
         char n = '\n';
         char *newLine = &n;
