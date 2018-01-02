@@ -22,6 +22,7 @@ public:
     bool isRunning();
     void addSocket(int secondSocket);
     int writeStringToSocket(char *buffer, int socket);
+    int sendNumbersToClients();
     int writeNumToSocket(int num, int socket);
     vector<int> getSockets();
     void setThread(pthread_t& thread);

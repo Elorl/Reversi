@@ -29,18 +29,6 @@ int Join::execute(vector<void *> args) {
 
     // add socket to room - join
     foundRoom.addSocket(socket);
-    //write id numbers 1, 2 to clients
-    int firstPlayerNum = 1;
-    int secondPlayerNum = 2;
-    int stat1 = foundRoom.writeNumToSocket(firstPlayerNum, foundRoom.getSockets()[0]);
-    if(stat1 == -1 || stat1 == 0) {
-        return stat1;
-    }
-    int stat2 = foundRoom.writeNumToSocket(secondPlayerNum, socket);
-
-    if(stat2 == -1 || stat2 == 0) {
-        return stat2;
-    }
     //if all correct
     return 1;
 }

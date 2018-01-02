@@ -109,3 +109,21 @@ void Room::closeRoom() {
 string Room::getName() {
     return name;
 }
+
+int Room::sendNumbersToClients() {
+    if(isFull()) {
+        //write id numbers 1, 2 to clients
+        int firstPlayerNum = 1;
+        int secondPlayerNum = 2;
+        int stat1 = writeNumToSocket(firstPlayerNum, sockets[0]);
+        if(stat1 == -1 || stat1 == 0) {
+            return stat1;
+        }
+        int stat2 = writeNumToSocket(secondPlayerNum, sockets[1]);
+
+        if(stat2 == -1 || stat2 == 0) {
+            return stat2;
+        }
+    }
+
+}

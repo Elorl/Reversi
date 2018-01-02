@@ -39,7 +39,8 @@ int CommandsManager::executeCommand(string command, vector<string> args) {
     vector<void*> commandArgs;
     commandArgs.push_back((void*)&args);
     commandArgs.push_back((void*)rooms);
-    foundCommand.execute(commandArgs);
+    int retVal = foundCommand.execute(commandArgs);
+    return retVal;
 
 }
 
