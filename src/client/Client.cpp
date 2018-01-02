@@ -184,35 +184,38 @@ vector<string> Client::getGamesList() {
 int Client::chooseRemoteGameOption() {
     int x = ui.chooseRemoteGameOptions();
     int playerNumber;
-    if(x == 1) {
-        string command = "start ";
-        ui.printString("please choose a game name");
-        string name = ui.getString();
-        command += name;
+    do {
+        if(x == 1) {
+            string command = "start ";
+            ui.printString("please choose a game name");
+            string name = ui.getString();
+            command += name;
 
-        sendString(command);
+            sendString(command);
 
-        //wait to get a player number
-        playerNumber = readNumber();
-        return playerNumber;
-    }
-    if(x == 2){
-     vector<string> gamesList = getGamesList();
-        ui.printString("please choose a game to join:");
-        for(int i = 0; i < gamesList.size(); i++) {
-            ui.printString(gamesList[i]);
+            //wait to get a player number
+            playerNumber = readNumber();
+            return playerNumber;
+        }
+        if(x == 2){
+
+            //request a game choice
+            string name = ui.getString();
+            string command = "join ";
+            command += name;
+            sendString(command);
+
+            //wait to get a player number
+            playerNumber = readNumber();
+            return playerNumber;
         }
 
-        //request a game choice
-        string name = ui.getString();
-        string command = "join ";
-        command += name;
-        sendString(command);
-
-        //wait to get a player number
-        playerNumber = readNumber();
-        return playerNumber;
-    }
-
-
+        if(x == 3) {
+            vector<string> gamesList = getGamesList();
+            ui.printString("please choose a game to join:");
+            for(int i = 0; i < gamesList.size(); i++) {
+                ui.printString(gamesList[i]);
+            }
+        }
+    } while(x == 3);
 }

@@ -185,15 +185,18 @@ int ConsoleUI::chooseRemoteGameOptions() {
     cout<< "Choose option:"<<endl;
     cout<< "(1) start a new game"<<endl;
     cout<< "(2) join an existing game"<<endl;
+    cout<< "(3) list of games"<<endl;
     int x;
     cin>> x;
 
-    while(x < 1 || x > 2) {
+    while(x < 1 || x > 3) {
+        cout<<"illegal choice"<<endl;
         cin.clear();
         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         cout<< "Choose option:"<<endl;
         cout<< "(1) start a new game"<<endl;
         cout<< "(2) join an existing game"<<endl;
+        cout<< "(3) list of games"<<endl;
         cin>> x;
     }
     cin.clear();
