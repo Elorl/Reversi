@@ -218,4 +218,5 @@ int Client::chooseRemoteGameOption() {
             }
         }
     } while(x == 3);
+
 }
