@@ -28,6 +28,7 @@ int Start::execute(vector<void*> args) {
     pthread_mutex_lock(&lock);
 
     if(rooms->find(name) != rooms->end()){
+        pthread_mutex_lock(&lock);
         return NAME_ALREADY_EXISTS;
     }
 

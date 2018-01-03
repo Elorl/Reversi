@@ -10,6 +10,7 @@
 #include "ListGame.h"
 
 pthread_mutex_t lock;
+
 CommandsManager::CommandsManager() {
     Command& start = *new Start();
     Command& join = *new Join();
