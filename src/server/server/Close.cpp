@@ -16,6 +16,8 @@ int Close::execute(vector<void *> args) {
     vector<string> stringArgs = *(vector<string>*)args[0];
     string name = stringArgs[0];
     map<string, Room&>* rooms = ((map<string, Room&>*)args[1]);
+
+    pthread_mutex_lock(&lock);
     //found room - if not found , it will contain the end of the map
     Room& foundRoom = rooms->find(name)->second;
 
@@ -27,5 +29,7 @@ int Close::execute(vector<void *> args) {
     //close room, remove from map
     foundRoom.closeRoom();
     rooms->erase(name);
+
+    pthread_mutex_unlock(&lock);
     return 1;
 }

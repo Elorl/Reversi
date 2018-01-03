@@ -25,12 +25,15 @@ int Play::execute(vector<void *> args) {
     int x = atoi(stringArgs[2].c_str());
     int y = atoi(stringArgs[3].c_str());
 
+    pthread_mutex_lock(&lock);
     //found room - if not found , it will contain the end of the map
     Room& foundRoom = rooms->find(name)->second;
     //if a game with such does not exist, or room is not running yet
     if(rooms->find(name) == rooms->end() || !foundRoom.isRunning()){
         return -1;
     }
+
+    pthread_mutex_unlock(&lock);
 
     //write move to socket
 

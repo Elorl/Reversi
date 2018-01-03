@@ -6,7 +6,7 @@
 #ifndef REVERSI_COMMAND_H
 #define REVERSI_COMMAND_H
 #include <iostream>
-
+extern pthread_mutex_t lock;
 using namespace std;
 class Command {
     public:

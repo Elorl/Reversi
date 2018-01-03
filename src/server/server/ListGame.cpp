@@ -26,6 +26,8 @@ int ListGame::execute(vector<void*> args) {
     vector<string> availableGames;
     //insert available games to a vector
 
+    pthread_mutex_lock(&lock);
+
     for(map<string,Room&>::iterator it = rooms->begin(); it != rooms->end(); ++it) {
         Room& room = it->second;
         //if game is not full, write it's name to client socket
@@ -33,6 +35,8 @@ int ListGame::execute(vector<void*> args) {
             availableGames.push_back(it->first);
         }
     }
+
+    pthread_mutex_unlock(&lock);
 
 
     //write number of names to socket (for the reading loop in client)

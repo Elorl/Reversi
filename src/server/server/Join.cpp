@@ -21,6 +21,8 @@ int Join::execute(vector<void *> args) {
     int socket = atoi(stringArgs[0].c_str());
     string name = stringArgs[1];
     map<string, Room&>* rooms = ((map<string, Room&>*)args[1]);
+
+    pthread_mutex_lock(&lock);
     //found room - if not found , it will contain the end of the map
     Room& foundRoom = rooms->find(name)->second;
     //if a game with such does not exist, or game is already full
@@ -30,6 +32,8 @@ int Join::execute(vector<void *> args) {
 
     // add socket to room - join
     foundRoom.addSocket(socket);
+
+    pthread_mutex_unlock(&lock);
     //if all correct
     return 1;
 }

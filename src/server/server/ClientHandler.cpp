@@ -36,6 +36,9 @@ void ClientHandler::handle() {
     map<string, Room&>::const_iterator iter;
     RoomPlayer *roomPlayer = new RoomPlayer;
     roomPlayer->commandsManager = cManager;
+
+    pthread_mutex_lock(&lock);
+
     //runs all over the room map.
     for(iter = rooms->begin(); iter != rooms->end(); iter++) {
         Room *r = &iter->second;
@@ -57,6 +60,8 @@ void ClientHandler::handle() {
             }
         }
     }
+
+    pthread_mutex_unlock(&lock);
 }
 /*****************************************************************************************************
 * function name: run          			                       		        	                     *
