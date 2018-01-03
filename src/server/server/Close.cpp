@@ -16,7 +16,6 @@ int Close::execute(vector<void *> args) {
     vector<string> stringArgs = *(vector<string>*)args[0];
     string name = stringArgs[0];
     map<string, Room&>* rooms = ((map<string, Room&>*)args[1]);
-
     //found room - if not found , it will contain the end of the map
     Room& foundRoom = rooms->find(name)->second;
 

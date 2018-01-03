@@ -25,6 +25,7 @@ int ListGame::execute(vector<void*> args) {
 
     vector<string> availableGames;
     //insert available games to a vector
+
     for(map<string,Room&>::iterator it = rooms->begin(); it != rooms->end(); ++it) {
         Room& room = it->second;
         //if game is not full, write it's name to client socket

@@ -23,7 +23,6 @@ int Play::execute(vector<void *> args) {
     int x = atoi(stringArgs[2].c_str());
     int y = atoi(stringArgs[3].c_str());
 
-
     //found room - if not found , it will contain the end of the map
     Room& foundRoom = rooms->find(name)->second;
     //if a game with such does not exist, or room is not running yet
