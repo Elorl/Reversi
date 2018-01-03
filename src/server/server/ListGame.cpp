@@ -48,7 +48,28 @@ int ListGame::execute(vector<void*> args) {
     //write game names
     for(int i = 0; i < numberOfAvailableGames; i++) {
         const char* gameName = availableGames[i].c_str();
-        write(socket, gameName, strlen(gameName) + 1);
+        int confirm;
+        stat = write(socket, gameName, strlen(gameName) + 1);
+        if(stat == -1) {
+            cout<< "Error writing game list size to socket"<<endl;
+            return stat;
+        }
+        if(stat == 0){
+            cout << "Client is disconnected"<<endl;
+            return stat;
+        }
+
+        stat = read(socket, &confirm, sizeof(confirm));
+
+        if(stat == -1) {
+            cout<< "Error writing game socket"<<endl;
+            return stat;
+        }
+        if(stat == 0){
+            cout << "Client is disconnected"<<endl;
+            return stat;
+        }
     }
+
     return 1;
 }

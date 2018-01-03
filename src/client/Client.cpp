@@ -167,8 +167,10 @@ vector<string> Client::getGamesList() {
 
     //read game names
     char buffer[50];
+    int confirm = 1;
     for(int i = 0; i < numberOfNames; i++){
         read(clientSocket, buffer, sizeof(buffer));
+        write(clientSocket, &confirm, sizeof(confirm));
         string gameName(buffer);
         gamesList.push_back(gameName);
     }

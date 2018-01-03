@@ -47,7 +47,7 @@ void Room::addSocket(int secondSocket) {
  * @return success status flag
  */
 int Room::writeStringToSocket(char *buffer, int socket) {
-    int status = write(socket, &buffer, strlen(buffer));
+    int status = write(socket, &buffer, strlen(buffer) + 1);
     if(status == -1) {
         cout<<"error writing to client socket" <<endl;
         return -1;
