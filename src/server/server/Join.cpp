@@ -27,6 +27,7 @@ int Join::execute(vector<void *> args) {
     Room& foundRoom = rooms->find(name)->second;
     //if a game with such does not exist, or game is already full
     if(rooms->find(name) == rooms->end() || foundRoom.isFull()){
+        pthread_mutex_unlock(&lock);
         return ROOM_UNAVAILABLE;
     }
 

@@ -23,6 +23,7 @@ int Close::execute(vector<void *> args) {
 
     //if a game with such does not exist
     if(rooms->find(name) == rooms->end()){
+        pthread_mutex_unlock(&lock);
         return -1;
     }
 

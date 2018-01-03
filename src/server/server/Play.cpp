@@ -30,6 +30,7 @@ int Play::execute(vector<void *> args) {
     Room& foundRoom = rooms->find(name)->second;
     //if a game with such does not exist, or room is not running yet
     if(rooms->find(name) == rooms->end() || !foundRoom.isRunning()){
+        pthread_mutex_unlock(&lock);
         return -1;
     }
 

@@ -12,7 +12,7 @@
 #include <cstdlib>
 #include <sstream>
 #include "ClientHandler.h"
-
+pthread_mutex_t lock;
 struct Connect {
     int *serverSock;
     int *clientSock;

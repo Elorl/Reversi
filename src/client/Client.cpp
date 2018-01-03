@@ -186,6 +186,92 @@ vector<string> Client::getGamesList() {
 }
 
 /*****************************************************************************************************
+* function name: start
+* the input: -
+* the output: player number
+* the function operation: starts a game
+*****************************************************************************************************/
+int Client::start() {
+    int playerNumber;
+    string command = "start ";
+    ui.printString("please choose a game name");
+    string name = ui.getString();
+    command += name;
+
+    sendString(command);
+
+    ui.printString("waiting for other player to Join");
+    //wait to get a player number
+    playerNumber = readNumber();
+    if (playerNumber == 0) {
+        throw "server closed!";
+    }
+    if (playerNumber == -1) {
+        throw "there was an error with the server!";
+    }
+    if(playerNumber == ILLEGAL_CHOICE) {
+        ui.printString("a game with an identical name already exists");
+    }
+    return  playerNumber;
+}
+
+/*****************************************************************************************************
+* function name: start
+* the input: -
+* the output: player number
+* the function operation: starts a game
+*****************************************************************************************************/
+
+bool Client::printGamesList() {
+    vector<string> gamesList = getGamesList();
+    if(gamesList.empty()) {
+        ui.printString("there are no available games to show");
+        return false;
+    }
+    ui.printString("current available games:");
+    for(int i = 0; i < gamesList.size(); i++) {
+        ui.printGameName(gamesList[i]);
+    }
+    ui.printString("");
+    ui.printString("\n");
+    return true;
+}
+
+
+/*****************************************************************************************************
+* function name: start
+* the input: -
+* the output: player number
+* the function operation: starts a game
+*****************************************************************************************************/
+int Client::join() {
+    int playerNumber;
+
+    ui.printString("\nplease choose a game to join:");
+    //after print request, reconnect
+    connectToServer();
+
+    //get a game choice
+    string name = ui.getString();
+    string command = "join ";
+    command += name;
+    sendString(command);
+
+    //wait to get a player number
+    playerNumber = readNumber();
+    if (playerNumber == 0) {
+        throw "server closed!";
+    }
+    if (playerNumber == -1) {
+        throw "there was an error with the server!";
+    }
+    if(playerNumber == ILLEGAL_CHOICE) {
+        ui.printString("there is no available game with the given name");
+    }
+
+    return playerNumber;
+}
+/*****************************************************************************************************
 * function name: chooseRemoteGameOption
 * the input: -
 * the output: player number
@@ -195,100 +281,53 @@ int Client::chooseRemoteGameOption() {
     int choice;
     int playerNumber;
     int choiceLegality;
+    bool reConnect = false;
     do {
-        //set legality as legal, for re-looping when needed
-        choiceLegality = 1;
+        if(reConnect){
+            connectToServer();
+            choiceLegality = 1;
+        }
+
         choice = ui.chooseRemoteGameOptions();
 
-        //start
-        if(choice == 1) {
-            string command = "start ";
-            ui.printString("please choose a game name");
-            string name = ui.getString();
-            command += name;
-
-            sendString(command);
-
-            ui.printString("waiting for other player to Join");
-            //wait to get a player number
-            playerNumber = readNumber();
-            if (playerNumber == 0) {
-                throw "server closed!";
+        switch(choice) {
+            case 1: {
+                playerNumber = start();
+                if(playerNumber == ILLEGAL_CHOICE){
+                    choiceLegality = ILLEGAL_CHOICE;
+                    reConnect = true;
+                    continue;
+                }
+                return  playerNumber;
             }
-            if (playerNumber == -1) {
-                throw "there was an error with the server!";
+            case 2: {
+                int gamesExist = printGamesList();
+                if(!gamesExist) {
+                    choiceLegality = ILLEGAL_CHOICE;
+                    reConnect = true;
+                    continue;
+                }
+
+                playerNumber = join();
+
+                if(playerNumber == ILLEGAL_CHOICE) {
+                    choiceLegality = ILLEGAL_CHOICE;
+                    reConnect = true;
+                    continue;
+                }
+                return playerNumber;
             }
-            if(playerNumber == ILLEGAL_CHOICE) {
-                ui.printString("a game with an identical name already exists");
+            case 3: {
+                printGamesList();
+                reConnect = true;
+            }
+            break;
+            default:{
+                ui.printString("illegal choice.");
                 choiceLegality = ILLEGAL_CHOICE;
-                //reconnect, reprint menu
-                connectToServer();
-                continue;
+                reConnect = true;
             }
-            //if all correct
-            return  playerNumber;
-        }
-        //join
-        if(choice == 2){
 
-            // print list of games
-            vector<string> gamesList = getGamesList();
-            //if no rooms is available, return to main the flag for reprinting menu
-            if(gamesList.empty()) {
-                ui.printString("no available games to join.");
-                choiceLegality = ILLEGAL_CHOICE;
-                //reconnect, reprint menu
-                connectToServer();
-                continue;
-            }
-            ui.printString("current available games:");
-            for(int i = 0; i < gamesList.size(); i++) {
-                ui.printGameName(gamesList[i]);
-            }
-            ui.printString("\nplease choose a game to join:");
-            //after print request, reconnect
-            connectToServer();
-
-            //get a game choice
-            string name = ui.getString();
-            string command = "join ";
-            command += name;
-            sendString(command);
-
-            //wait to get a player number
-            playerNumber = readNumber();
-            if (playerNumber == 0) {
-                throw "server closed!";
-            }
-            if (playerNumber == -1) {
-                throw "there was an error with the server!";
-            }
-            if(playerNumber == ILLEGAL_CHOICE) {
-                ui.printString("there is no available game with the given name");
-                choiceLegality = ILLEGAL_CHOICE;
-
-                //reconnect, reprint menu
-                connectToServer();
-                continue;
-            }
-            //if all correct
-            return playerNumber;
-        }
-
-        //list of games
-        if(choice == 3) {
-            vector<string> gamesList = getGamesList();
-            if(gamesList.empty()) {
-                ui.printString("there is no available room to join");
-                continue;
-            }
-            ui.printString("current available games:");
-            for(int i = 0; i < gamesList.size(); i++) {
-                ui.printGameName(gamesList[i]);
-            }
-            ui.printString("");
-            //reconnect to server
-            connectToServer();
         }
     } while(choice == 3 || choiceLegality == ILLEGAL_CHOICE);
 

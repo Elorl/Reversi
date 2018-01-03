@@ -26,6 +26,9 @@ public:
     pair<int, int> readPoint();
     vector<string> getGamesList();
     int chooseRemoteGameOption();
+    int start();
+    bool printGamesList();
+    int join();
 private:
     const char *serverIP;
     int serverPort;
