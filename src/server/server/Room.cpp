@@ -43,11 +43,11 @@ void Room::addSocket(int secondSocket) {
 /**
  * write string to socket
  * @param buffer
- * @param socket
+ * @param c
  * @return success status flag
  */
-int Room::writeStringToSocket(char *buffer, int socket) {
-    int status = write(socket, &buffer, strlen(buffer) + 1);
+int Room::writeCharToSocket(char c, int socket) {
+    int status = write(socket, &c, sizeof(c));
     if(status == -1) {
         cout<<"error writing to client socket" <<endl;
         return -1;

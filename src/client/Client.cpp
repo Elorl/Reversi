@@ -105,7 +105,7 @@ int Client::readNumber() {
 *****************************************************************************************************/
 void Client::sendPoint(int arg1, char comma, int arg2) {
 
-    //chain all args to string: "play x,y" , then convert to char array
+//chain all args to string: "play x,y" , then convert to char array
     string command = "play ";
     stringstream s1, s2;
     s1 << arg1;
