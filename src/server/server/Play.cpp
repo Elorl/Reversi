@@ -5,6 +5,7 @@
 
 #include <map>
 #include <cstdlib>
+#include <unistd.h>
 #include "Play.h"
 #include "Room.h"
 /**
@@ -31,10 +32,38 @@ int Play::execute(vector<void *> args) {
     }
 
     //write move to socket
-    foundRoom.writeNumToSocket(x, destSocket);
+
+    int status = write(destSocket, &x, sizeof(x));
+    if(status == -1) {
+        cout<<"error writing to client socket" <<endl;
+        return -1;
+    }
+    if(status ==0) {
+        cout<< "client is disconnected"<< endl;
+        return 0;
+    }
+
     char comma = ',';
-    foundRoom.writeCharToSocket(comma, destSocket);
-    foundRoom.writeNumToSocket(y, destSocket);
+
+    status = write(destSocket, &comma, sizeof(comma));
+    if(status == -1) {
+        cout<<"error writing to client socket" <<endl;
+        return -1;
+    }
+    if(status ==0) {
+        cout<< "client is disconnected"<< endl;
+        return 0;
+    }
+
+    status = write(destSocket, &y, sizeof(y));
+    if(status == -1) {
+        cout<<"error writing to client socket" <<endl;
+        return -1;
+    }
+    if(status ==0) {
+        cout<< "client is disconnected"<< endl;
+        return 0;
+    }
 
     return 1;
 
