@@ -8,6 +8,8 @@
 #include <netdb.h>
 #include <string.h>
 #include <unistd.h>
+#include <sstream>
+
 #define ILLEGAL_CHOICE -5
 
 using namespace std;
@@ -105,9 +107,14 @@ void Client::sendPoint(int arg1, char comma, int arg2) {
 
     //chain all args to string: "play x,y" , then convert to char array
     string command = "play ";
-    command.push_back(static_cast<char>(arg1));
-    command.push_back(comma);
-    command.push_back(static_cast<char>(arg2));
+    stringstream s1, s2;
+    s1 << arg1;
+    string x = s1.str();
+    command += x;
+    command += comma;
+    s2 << arg2;
+    string y = s2.str();
+    command += y;
     sendString(command);
 }
 
@@ -274,7 +281,7 @@ int Client::chooseRemoteGameOption() {
         if(choice == 3) {
             vector<string> gamesList = getGamesList();
             if(gamesList.empty()) {
-                ui.printString("there is no available room to join:");
+                ui.printString("there is no available room to join");
                 ui.printString("\n");
                 continue;
             }

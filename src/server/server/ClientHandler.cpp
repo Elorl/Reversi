@@ -68,7 +68,7 @@ void* ClientHandler::run(void *r) {
 int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, CommandsManager *cm) {
     vector<string> args;
     CommandsManager *commandsManager = cm;
-    char *input, *token, temp = ',';
+    char input[50], *token, temp = ',';
     const char *comma = &temp;
     char c = ' ', n ='\n';
     const char *space = &c;

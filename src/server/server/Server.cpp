@@ -89,14 +89,14 @@ void* Server::stop(void *connectStruckt) {
     char command[5];
     cin >> command;
     if(strcmp(command, "exit") == 0) {
-        for(iter = arg->roomList->begin(); iter != arg->roomList->end(); iter++) {
-            Room r = iter->second;
-            r.closeRoom();
-        }
         vector <pthread_t> threads = *arg->threadsList;
         for(int i=0; i < threads.size(); i++) {
             pthread_t thread = threads[i];
             pthread_cancel(thread);
+        }
+        for(iter = arg->roomList->begin(); iter != arg->roomList->end(); iter++) {
+            Room r = iter->second;
+            r.closeRoom();
         }
         vector <int> sockets = *arg->socketList;
         for(int j = 0; j < sockets.size(); j++) {
