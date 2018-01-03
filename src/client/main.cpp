@@ -98,7 +98,7 @@ pair<string, int> readFIle() {
         cout << "there is no settings file.";
         pair.first = "-1";
         pair.second = -1;
-    //scan the lines to get the ip and port.
+        //scan the lines to get the ip and port.
     } else {
         getline(settings,ip);
         getline(settings,port);
