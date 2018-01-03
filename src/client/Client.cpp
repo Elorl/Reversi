@@ -221,7 +221,6 @@ int Client::chooseRemoteGameOption() {
             if(playerNumber == ILLEGAL_CHOICE) {
                 ui.printString("a game with an identical name already exists");
                 choiceLegality = ILLEGAL_CHOICE;
-                ui.printString("\n");
                 //reconnect, reprint menu
                 connectToServer();
                 continue;
@@ -238,15 +237,15 @@ int Client::chooseRemoteGameOption() {
             if(gamesList.empty()) {
                 ui.printString("no available games to join.");
                 choiceLegality = ILLEGAL_CHOICE;
-                ui.printString("\n");
                 //reconnect, reprint menu
                 connectToServer();
                 continue;
             }
-            ui.printString("please choose a game to join:");
+            ui.printString("current available games:");
             for(int i = 0; i < gamesList.size(); i++) {
-                ui.printString(gamesList[i]);
+                ui.printGameName(gamesList[i]);
             }
+            ui.printString("\nplease choose a game to join:");
             //after print request, reconnect
             connectToServer();
 
@@ -267,7 +266,6 @@ int Client::chooseRemoteGameOption() {
             if(playerNumber == ILLEGAL_CHOICE) {
                 ui.printString("there is no available game with the given name");
                 choiceLegality = ILLEGAL_CHOICE;
-                ui.printString("\n");
 
                 //reconnect, reprint menu
                 connectToServer();
@@ -282,14 +280,13 @@ int Client::chooseRemoteGameOption() {
             vector<string> gamesList = getGamesList();
             if(gamesList.empty()) {
                 ui.printString("there is no available room to join");
-                ui.printString("\n");
                 continue;
             }
-            ui.printString("please choose a game to join:");
+            ui.printString("current available games:");
             for(int i = 0; i < gamesList.size(); i++) {
-                ui.printString(gamesList[i]);
+                ui.printGameName(gamesList[i]);
             }
-            ui.printString("\n");
+            ui.printString("");
             //reconnect to server
             connectToServer();
         }

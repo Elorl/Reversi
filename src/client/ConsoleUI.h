@@ -22,6 +22,7 @@ public:
     int chooseRemoteGameOptions();
     void printString(string str);
     string getString();
+    void printGameName(string str);
 };
 
 

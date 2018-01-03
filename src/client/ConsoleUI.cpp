@@ -226,3 +226,13 @@ string ConsoleUI::getString() {
     cin>>str;
     return str;
 }
+/*****************************************************************************************************
+* function name: printGameName
+* the input: -
+* the output: -
+* the function operation: prints a given name of Game
+*****************************************************************************************************/
+void ConsoleUI::printGameName(string str) {
+    string s = ", ";
+    cout<<str<<s;
+}
