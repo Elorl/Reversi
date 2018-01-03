@@ -15,6 +15,7 @@
  * @return
  */
 int Play::execute(vector<void *> args) {
+
     vector<string> stringArgs = *(vector<string>*)args[0];
     map<string, Room&>* rooms = (map<string, Room&>*)args[1];
 

@@ -34,6 +34,7 @@ int ListGame::execute(vector<void*> args) {
         }
     }
 
+
     //write number of names to socket (for the reading loop in client)
     int numberOfAvailableGames = availableGames.size();
     int stat = write(socket,&numberOfAvailableGames, sizeof(numberOfAvailableGames));
