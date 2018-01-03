@@ -23,10 +23,13 @@ CommandsManager::CommandsManager() {
 
 }
 CommandsManager::~CommandsManager() {
-    /*for ( pair<const string,Command&> &command : commandsMap){
-        delete command.second;
-        command.second = NULL;
-    }*/
+
+    for(map<string,Command&>::iterator it = commandsMap->begin(); it != commandsMap->end(); ++it) {
+        Command& command = it->second;
+        delete command;
+        command = NULL;
+    }
+
 }
 int CommandsManager::executeCommand(string command, vector<string> args) {
     Command& foundCommand = commandsMap.find(command)->second;
