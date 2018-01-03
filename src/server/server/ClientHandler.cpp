@@ -11,9 +11,11 @@
 #include <sstream>
 #include <cstdio>
 
+
 struct RoomPlayer {
     Room *room;
     CommandsManager *commandsManager;
+    map <string, Room&> *mapRooms;
 };
 
 /*****************************************************************************************************
@@ -25,6 +27,7 @@ struct RoomPlayer {
 ClientHandler::ClientHandler(CommandsManager *cm, map <string, Room&> *map) {
     rooms = map;
     cManager = cm;
+
 }
 /*****************************************************************************************************
 * function name: handle          			                       		        	                 *
@@ -36,6 +39,7 @@ void ClientHandler::handle() {
     map<string, Room&>::const_iterator iter;
     RoomPlayer *roomPlayer = new RoomPlayer;
     roomPlayer->commandsManager = cManager;
+    roomPlayer->mapRooms = rooms;
 
     pthread_mutex_lock(&lock);
 
@@ -83,6 +87,7 @@ void* ClientHandler::run(void *r) {
         //check if the game was ended(-2), or there was error(0 or -1)
         if(status == 0 || status == -1 || status == -2) {
             // Close communication with the client
+            roomPlayer->mapRooms->erase(room->getName());
             room->closeRoom();
             pthread_exit(&status);
         } else {
@@ -99,7 +104,7 @@ void* ClientHandler::run(void *r) {
 int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, CommandsManager *cm) {
     vector<string> args;
     CommandsManager *commandsManager = cm;
-    char input[50], *token, temp = ',';
+    char input[50], *token1, *token2, *token3, temp = ',';
     const char *comma = &temp;
     char c = ' ', n ='\n';
     const char *space = &c;
@@ -123,13 +128,13 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
     args.push_back(receiver);
     args.push_back(r->getName());
     //split the string with the space char.
-    token = strtok(input, space);
-    string command(token);
+    token1 = strtok(input, space);
+    string command(token1);
     //split the point to two ints.
-    token = strtok(NULL, comma);
-    string x(token);
-    token = strtok(NULL, newLine);
-    string y(token);
+    token2 = strtok(NULL, comma);
+    string x(token2);
+    token3 = strtok(NULL, newLine);
+    string y(token3);
     int xNum, yNum;
     sscanf(x.c_str(), "%d", &xNum);
     sscanf(y.c_str(), "%d", &yNum);
@@ -144,7 +149,11 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
     args.push_back(x);
     args.push_back(y);
     //execute the command.
-    commandsManager->executeCommand(command, args);
+    try {
+        commandsManager->executeCommand(command, args);
+    } catch (char const *x) {
+        cout<<"error writing to client socket" <<endl;
+    }
 }
 
 

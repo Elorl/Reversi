@@ -9,6 +9,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sstream>
+#include <cstdlib>
 
 #define ILLEGAL_CHOICE -5
 
@@ -129,15 +130,16 @@ pair<int, int> Client::readPoint() {
     char comma;
     pair<int, int> dot;
     int n = read(clientSocket, &x, sizeof(x));
-    if (n == -1) {
+    if (n == -1 || n == 0) {
         throw "Error reading x from socket";
+        exit(0);
     }
     n = read(clientSocket, &comma, sizeof(comma));
-    if (n == -1) {
+    if (n == -1 || n == 0) {
         throw "Error reading comma from socket";
     }
     n = read(clientSocket, &y, sizeof(y));
-    if (n == -1) {
+    if (n == -1 || n == 0) {
         throw "Error reading y from socket";
     }
     dot.first = x;

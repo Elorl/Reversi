@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug"/>
+				<Option working_dir="/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug"/>
+				<Option working_dir="/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug"/>
+				<Option working_dir="/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="server">
-				<Option output="/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug"/>
+				<Option output="/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 server"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 server"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="server/fast">
-				<Option output="/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug"/>
+				<Option output="/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,74 +77,74 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 server/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/avn/CLionProjects2/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 server/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/elor/CLionProjects/Reversi/src/server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/ClientHandler.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/ClientHandler.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/ClientHandler.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/ClientHandler.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Close.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Close.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Close.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Close.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Command.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Command.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/CommandsManager.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/CommandsManager.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/CommandsManager.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Join.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Join.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Join.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Join.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/ListGame.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/ListGame.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/ListGame.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/ListGame.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Play.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Play.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Play.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Play.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Room.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Room.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Room.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Room.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Server.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Server.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Server.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Server.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Start.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Start.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/Start.h">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/Start.h">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/server/main.cpp">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/server/main.cpp">
 			<Option target="server"/>
 		</Unit>
-		<Unit filename="/home/avn/CLionProjects2/Reversi/src/server/CMakeLists.txt">
+		<Unit filename="/home/elor/CLionProjects/Reversi/src/server/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

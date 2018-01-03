@@ -22,6 +22,8 @@ struct Connect {
     map <string, Room&> *roomList;
 };
 
+
+
 using namespace std;
 #define MAX_CONNECTED_CLIENTS 10
 
@@ -44,6 +46,7 @@ Server::Server(int port, CommandsManager cM): port(port) {
 * the function operation: start the server.                                                          *
 *****************************************************************************************************/
 void Server::start() {
+
     Connect *args = new Connect;
     args->serverSock = serverSocket;
     args->socketList = &sockets;
@@ -194,17 +197,25 @@ void* Server::handleAccepts(void* connectStruct) {
         args.push_back(temp);
     }
     //execute the command from the socket
-    check = arg->cManager->executeCommand(command, args);
+    try {
+        check = arg->cManager->executeCommand(command, args);
+    } catch (char const *s) {
+        cout << s << endl;
+        close(socket);
+        pthread_exit(&status);
+    }
     //check if the command is not valid
     if(check < 0) {
         status = write(socket, &check, sizeof(check));
         if (status == -1) {
-            cout << "Error reading current player move" << endl;
+            cout << "Error reading current player command" << endl;
+            close(socket);
             pthread_exit(&status);
         }
         //check if the read action have been failed.
         if (status == 0) {
             cout << "Current Player is disconnected" << endl;
+            close(socket);
             pthread_exit(&status);
         }
     } else {

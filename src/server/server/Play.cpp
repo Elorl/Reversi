@@ -40,34 +40,28 @@ int Play::execute(vector<void *> args) {
 
     int status = write(destSocket, &x, sizeof(x));
     if(status == -1) {
-        cout<<"error writing to client socket" <<endl;
-        return -1;
+        throw("error writing to client socket");
     }
     if(status ==0) {
-        cout<< "client is disconnected"<< endl;
-        return 0;
+        throw("client is disconnected");
     }
 
     char comma = ',';
 
     status = write(destSocket, &comma, sizeof(comma));
     if(status == -1) {
-        cout<<"error writing to client socket" <<endl;
-        return -1;
+        throw("error writing to client socket");
     }
     if(status ==0) {
-        cout<< "client is disconnected"<< endl;
-        return 0;
+        throw("client is disconnected");
     }
 
     status = write(destSocket, &y, sizeof(y));
     if(status == -1) {
-        cout<<"error writing to client socket" <<endl;
-        return -1;
+        throw("error writing to client socket");
     }
     if(status ==0) {
-        cout<< "client is disconnected"<< endl;
-        return 0;
+        throw("client is disconnected");
     }
 
     return 1;

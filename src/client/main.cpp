@@ -64,7 +64,7 @@ int main() {
     Game game(board, p1, p2, l, consoleUI);
     try {
         game.run();
-    } catch (const char) {
+    } catch (char const*) {
         consoleUI.printString("Error in connection to remote game");
     }
 

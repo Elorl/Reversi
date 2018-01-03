@@ -76,7 +76,11 @@ void ManualPlayer::chooseOption(int *x, int *y) {
 * the function operation: the function will send the int's to the server.                            *
 *****************************************************************************************************/
 void ManualPlayer::send(int *x, int *y) {
-    client->sendPoint(*x, ',', *y);
+    if(*x == -2 && *y == -2) {
+        client->sendString("close");
+    } else {
+        client->sendPoint(*x, ',', *y);
+    }
 }
 /*****************************************************************************************************
 * function name: noMove               	    						        	                     *
