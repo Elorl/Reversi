@@ -11,7 +11,6 @@
 #include <sstream>
 #include <cstdio>
 
-
 struct RoomPlayer {
     Room *room;
     CommandsManager *commandsManager;

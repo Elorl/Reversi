@@ -1,4 +1,3 @@
-
 #define DEFAULT_SIZE 8
 #include "Board.h"
 #include "Game.h"
