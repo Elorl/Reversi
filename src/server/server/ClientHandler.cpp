@@ -23,23 +23,23 @@ ClientHandler::ClientHandler(CommandsManager *cm, map <string, Room&> *map) {
 
 void ClientHandler::handle() {
     map<string, Room&>::const_iterator iter;
-    RoomPlayer roomPlayer;
-    roomPlayer.commandsManager = cManager;
+    RoomPlayer *roomPlayer = new RoomPlayer;
+    roomPlayer->commandsManager = cManager;
     for(iter = rooms->begin(); iter != rooms->end(); iter++) {
-        Room r = iter->second;
-        bool running = r.isRunning();
-        bool full = r.isFull();
+        Room *r = &iter->second;
+        bool running = r->isRunning();
+        bool full = r->isFull();
         if((!running) && (full)) {
-            r.markRunning();
             pthread_t thread;
-            roomPlayer.room = &r;
-            int i = pthread_create(&thread, NULL, run, &roomPlayer);
+            roomPlayer->room = r;
+
+            int i = pthread_create(&thread, NULL, run, roomPlayer);
             if (i) {
                 cout << "Error: unable to create thread, " << i << endl;
-                r.closeRoom();
+                r->closeRoom();
             } else {
-                r.markRunning();
-                r.setThread(thread);
+                r->markRunning();
+                r->setThread(thread);
             }
         }
     }
@@ -50,8 +50,8 @@ void* ClientHandler::run(void *r) {
     Room *room = roomPlayer->room;
     room->sendNumbersToClients();
     int clientSockets[2];
-    clientSockets[0] = room->getSockets()[0];
-    clientSockets[1] = room->getSockets()[1];
+    clientSockets[0] = room->getFirstSocket();
+    clientSockets[1] = room->getSecondSocket();
     int status, i = 0;
     while(true) {
         status = handleClients(clientSockets[i%2], clientSockets[(i + 1)% 2], room, roomPlayer->commandsManager);

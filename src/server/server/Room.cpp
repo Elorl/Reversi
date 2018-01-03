@@ -127,3 +127,9 @@ int Room::sendNumbersToClients() {
     }
 
 }
+int Room::getFirstSocket() {
+    return sockets[0];
+}
+int Room::getSecondSocket() {
+    return sockets[1];
+}

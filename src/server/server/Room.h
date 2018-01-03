@@ -25,6 +25,8 @@ public:
     int sendNumbersToClients();
     int writeNumToSocket(int num, int socket);
     vector<int> getSockets();
+    int getFirstSocket();
+    int getSecondSocket();
     void setThread(pthread_t& thread);
     void markRunning();
     void closeRoom();
