@@ -63,7 +63,12 @@ int main() {
     p2->setLogic(l);
     p1->setLogic(l);
     Game game(board, p1, p2, l, consoleUI);
-    game.run();
+    try {
+        game.run();
+    } catch (const char) {
+        consoleUI.printString("Error in connection to remote game");
+    }
+
     //check if there is a client object inside the players.
     if(p1->sendToServer() || p2->sendToServer()) {
         delete(client);
