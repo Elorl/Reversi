@@ -16,35 +16,54 @@ struct RoomPlayer {
     CommandsManager *commandsManager;
 };
 
+/*****************************************************************************************************
+* function name: ClientHandler          			            		        	                 *
+* the input: cm = the command manager object, map of the rooms.                                      *
+* the output: -                                                                                      *
+* the function operation: constructor                                                                *
+*****************************************************************************************************/
 ClientHandler::ClientHandler(CommandsManager *cm, map <string, Room&> *map) {
     rooms = map;
     cManager = cm;
 }
-
+/*****************************************************************************************************
+* function name: handle          			                       		        	                 *
+* the input: -                                                                                       *
+* the output: -                                                                                      *
+* the function operation: check if there is a new room to run.                                       *
+*****************************************************************************************************/
 void ClientHandler::handle() {
     map<string, Room&>::const_iterator iter;
     RoomPlayer *roomPlayer = new RoomPlayer;
     roomPlayer->commandsManager = cManager;
+    //runs all over the room map.
     for(iter = rooms->begin(); iter != rooms->end(); iter++) {
         Room *r = &iter->second;
         bool running = r->isRunning();
         bool full = r->isFull();
+        //check if there is an open thread to the room and if the room has 2 sockets.
         if((!running) && (full)) {
             pthread_t thread;
             roomPlayer->room = r;
-
+            //create the thread to start the game, actually.
             int i = pthread_create(&thread, NULL, run, roomPlayer);
             if (i) {
                 cout << "Error: unable to create thread, " << i << endl;
                 r->closeRoom();
             } else {
+                //update the game was start.
                 r->markRunning();
                 r->setThread(thread);
             }
         }
     }
 }
-
+/*****************************************************************************************************
+* function name: run          			                       		        	                     *
+* the input: struct with the room and the command manager.                                           *
+* the output: -                                                                                      *
+* the function operation: start the run of the game, switch between the players.                     *
+*****************************************************************************************************/
 void* ClientHandler::run(void *r) {
     struct RoomPlayer *roomPlayer = (struct RoomPlayer *) r;
     Room *room = roomPlayer->room;
@@ -53,8 +72,10 @@ void* ClientHandler::run(void *r) {
     clientSockets[0] = room->getFirstSocket();
     clientSockets[1] = room->getSecondSocket();
     int status, i = 0;
+    //loop that run the game.
     while(true) {
         status = handleClients(clientSockets[i%2], clientSockets[(i + 1)% 2], room, roomPlayer->commandsManager);
+        //check if the game was ended(-2), or there was error(0 or -1)
         if(status == 0 || status == -1 || status == -2) {
             // Close communication with the client
             room->closeRoom();
@@ -64,7 +85,12 @@ void* ClientHandler::run(void *r) {
         }
     }
 }
-
+/*****************************************************************************************************
+* function name: handleClients          			          		        	                     *
+* the input: the recive and send socket, the room and the command manager.                           *
+* the output: -                                                                                      *
+* the function operation: get from the sender user is play command and send it to the receiver.      *
+*****************************************************************************************************/
 int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, CommandsManager *cm) {
     vector<string> args;
     CommandsManager *commandsManager = cm;
@@ -73,16 +99,19 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
     char c = ' ', n ='\n';
     const char *space = &c;
     const char *newLine = &n;
-    //יכול להיות שצריך לקרוא מהסוקט עד שמקבלים \n..צריך לבדוק את זה
+    //read the command from the user
     int status = read(senderSocket, input, sizeof(input));
+    //check if the read was failed.
     if (status == -1) {
         cout << "Error reading current player move" << endl;
         return -1;
     }
+    //check if the read was failed.
     if(status == 0) {
         cout << "Current Player is disconnected" << endl;
         return 0;
     }
+    //convert the socket number to string.
     stringstream s;
     s << receiverSocket;
     string receiver = s.str();
@@ -91,7 +120,7 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
     //split the string with the space char.
     token = strtok(input, space);
     string command(token);
-    //לוודא שזה NULL ולא ההמשך של cmnd
+    //split the point to two ints.
     token = strtok(NULL, comma);
     string x(token);
     token = strtok(NULL, newLine);
@@ -109,6 +138,7 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
     }
     args.push_back(x);
     args.push_back(y);
+    //execute the command.
     commandsManager->executeCommand(command, args);
 }
 
