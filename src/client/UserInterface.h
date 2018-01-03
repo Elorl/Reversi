@@ -24,6 +24,7 @@ public:
     virtual int chooseRemoteGameOptions() = 0;
     virtual void printString(string str) = 0;
     virtual string getString() = 0 ;
+    virtual void printGameName(string str) = 0;
 };
 
 
