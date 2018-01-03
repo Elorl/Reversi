@@ -31,6 +31,7 @@ public:
     void markRunning();
     void closeRoom();
     string getName();
+    
 };
 
 
