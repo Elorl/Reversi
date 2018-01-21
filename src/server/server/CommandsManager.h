@@ -21,7 +21,6 @@ using namespace std;
 class CommandsManager {
 public:
     CommandsManager();
-    ~CommandsManager();
     int executeCommand(string command, vector<string> args);
     void setRooms(map<string, Room&>* rooms);
 

@@ -23,15 +23,7 @@ CommandsManager::CommandsManager() {
     commandsMap.insert(pair<string, Command&>("list_games", listGame));
 
 }
-CommandsManager::~CommandsManager() {
-/*
-    for(map<string,Command&>::iterator it = commandsMap.begin(); it != commandsMap.end(); ++it) {
-        Command* command = &it->second;
-        delete command;
-        commandsMap.erase(it);
-    }*/
 
-}
 int CommandsManager::executeCommand(string command, vector<string> args) {
     Command& foundCommand = commandsMap.find(command)->second;
 

@@ -23,6 +23,7 @@ struct Connect {
 };
 
 
+
 using namespace std;
 #define MAX_CONNECTED_CLIENTS 10
 
@@ -32,12 +33,13 @@ using namespace std;
 * the output:                                                                                        *
 * the function operation: constructor.                                                               *
 *****************************************************************************************************/
-Server::Server(int port, CommandsManager cM): port(port) {
+Server::Server(int port, CommandsManager cM): port(port), threads(new vector <pthread_t>) {
     serverSocket = new int;
     commandsManager = cM;
     commandsManager.setRooms(&rooms);
     cout << "Server" << endl;
 }
+
 /*****************************************************************************************************
 * function name: start     											                                 *
 * the input: -					                                                                     *
@@ -52,6 +54,7 @@ void Server::start() {
     args->threadsList = threads;
     args->cManager = &commandsManager;
     args->roomList = &rooms;
+    thread = new pthread_t;
     // Create a socket point
     *serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (*serverSocket == -1) {
@@ -69,13 +72,13 @@ void Server::start() {
     // Start listening to incoming connections
     listen(*serverSocket, MAX_CONNECTED_CLIENTS);
     //create a thread that run the accept loop.
-    int i = pthread_create(&thread, NULL, handleConnectClient, args);
+    int i = pthread_create(thread, NULL, handleConnectClient, args);
     if (i) {
         cout << "Error: unable to create thread, " << i << endl;
         exit(-1);
     }
     //add this thread to the threads list.
-    args->threadsList->push_back(thread);
+    args->threadsList->push_back(*thread);
     pthread_t exitThread;
     //create a threat that listening to the server's command line, to catch 'exit' command.
     int j = pthread_create(&exitThread, NULL, stop, args);
@@ -149,7 +152,10 @@ void* Server::handleConnectClient(void* connectStruct) {
             exit(-1);
         }
         //add the new socket to the threads list.
+        int x = arg->threadsList->size();
         arg->threadsList->push_back(pthread);
+        int x1 = arg->threadsList->size();
+        int y = arg->threadsList->size();
     }
 }
 /*****************************************************************************************************

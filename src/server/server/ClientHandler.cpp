@@ -105,9 +105,9 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
     CommandsManager *commandsManager = cm;
     char input[50], *token1, *token2, *token3, temp = ',';
     const char *comma = &temp;
-    char c = ' ', n ='\n';
+    char c = ' ', n ='\n', z = '\0';
     const char *space = &c;
-    const char *newLine = &n;
+    const char *endS = &z;
     //read the command from the user
     int status = read(senderSocket, input, sizeof(input));
     //check if the read was failed.
@@ -131,22 +131,22 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
     string command(token1);
     //split the point to two ints.
     token2 = strtok(NULL, comma);
-    string x(token2);
-    token3 = strtok(NULL, newLine);
-    string y(token3);
-    int xNum, yNum;
-    sscanf(x.c_str(), "%d", &xNum);
-    sscanf(y.c_str(), "%d", &yNum);
-    //check if the game was ended.
-    if(xNum == -2 || yNum == -2 ) {
-        return -2;
+    int xNum = 0, yNum = 0;
+    if(token2 != NULL) {
+        string x(token2);
+        sscanf(x.c_str(), "%d", &xNum);
+        args.push_back(x);
+    }
+    token3 = strtok(NULL, endS);
+    if(token3 != NULL) {
+        string y(token3);
+        sscanf(y.c_str(), "%d", &yNum);
+        args.push_back(y);
     }
     //check if there is no possible move for a player.
     if(xNum == -3 || yNum == -3) {
         return -3;
     }
-    args.push_back(x);
-    args.push_back(y);
     //execute the command.
     try {
         commandsManager->executeCommand(command, args);

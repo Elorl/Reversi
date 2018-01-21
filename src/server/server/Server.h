@@ -31,8 +31,8 @@ private:
     int *serverSocket; // the socket's file descriptor
     int clientSockets[2];
     vector <int> sockets;
-    vector <pthread_t> *threads = new vector <pthread_t>;
-    pthread_t thread;
+    vector <pthread_t> *threads;
+    pthread_t *thread;
     CommandsManager commandsManager;
 };
 

@@ -89,9 +89,8 @@ void Game::run() {
     this->logic->clearOptions();
     //send to the server massage that the game is end.
     if(currentPlayer->sendToServer() == true) {
-        int *endGame;
-        *endGame = -2;
-        currentPlayer->send(endGame, endGame);
+        int endGame = -2;
+        currentPlayer->send(&endGame, &endGame);
     }
     delete inputX;
     delete inputY;
