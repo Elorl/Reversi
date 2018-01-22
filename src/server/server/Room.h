@@ -14,7 +14,6 @@ class Room {
 private:
     vector<int> sockets;
     bool running;
-    pthread_t* thread;
     string name;
 public:
     Room(int firstSocket, string nameRoom);
@@ -27,7 +26,6 @@ public:
     vector<int> getSockets();
     int getFirstSocket();
     int getSecondSocket();
-    void setThread(pthread_t& thread);
     void markRunning();
     void closeRoom();
     string getName();

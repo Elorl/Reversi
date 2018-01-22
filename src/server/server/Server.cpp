@@ -97,6 +97,7 @@ void Server::start() {
         cout << "Error: unable to create thread, " << j << endl;
         exit(-1);
     }
+
     pthread_exit(NULL);
 }
 
@@ -113,13 +114,15 @@ void* Server::stop(void *connectStruckt) {
     cin >> command;
     //check if the server got an 'exit' command.
     if(strcmp(command, "exit") == 0) {
-
+        cout<< "got exit"<<endl;
         //terminate pool
         arg->threadPool->terminate();
-
+        cout<< "got exit1"<<endl;
         //cancel accept thread
         pthread_t *thread = arg->thread;
         pthread_cancel(*thread);
+
+        cout<< "got exit2"<<endl;
         /*
         vector <pthread_t> threads = *arg->threadsList;
         //close all the threads.
@@ -133,6 +136,7 @@ void* Server::stop(void *connectStruckt) {
             Room r = iter->second;
             r.closeRoom();
         }
+        cout<< "got exit3"<<endl;
         //close all the sockets.
         vector <int> sockets = *arg->socketList;
         for(int j = 0; j < sockets.size(); j++) {
@@ -140,6 +144,7 @@ void* Server::stop(void *connectStruckt) {
             close(socket);
         }
     }
+    cout<< "got exitend"<<endl;
 }
 /*****************************************************************************************************
 * function name: handleConnectClient											        	         *
@@ -206,12 +211,14 @@ void* Server::handleAccepts(void* connectStruct) {
     //check if the read action have been failed.
     if (status == -1) {
         cout << "Error reading current player move" << endl;
-        pthread_exit(&status);
+        return NULL;
+        //pthread_exit(&status);
     }
     //check if the read action have been failed.
     if (status == 0) {
         cout << "Current Player is disconnected" << endl;
-        pthread_exit(&status);
+        return NULL;
+        //pthread_exit(&status);
     }
     char c = ' ';
     const char *space = &c;
@@ -233,6 +240,7 @@ void* Server::handleAccepts(void* connectStruct) {
     } catch (char const *s) {
         cout << s << endl;
         close(socket);
+        return NULL;
         //pthread_exit(&status);
     }
     //check if the command is not valid
@@ -241,12 +249,14 @@ void* Server::handleAccepts(void* connectStruct) {
         if (status == -1) {
             cout << "Error reading current player command" << endl;
             close(socket);
+            return NULL;
             //pthread_exit(&status);
         }
         //check if the read action have been failed.
         if (status == 0) {
             cout << "Current Player is disconnected" << endl;
             close(socket);
+            return NULL;
             //pthread_exit(&status);
         }
     } else {

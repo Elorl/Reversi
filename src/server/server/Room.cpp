@@ -13,7 +13,7 @@
  * constructor.
  * @param firstSocket
  */
-Room::Room(int firstSocket, string nameRoom): running(false), thread(NULL){
+Room::Room(int firstSocket, string nameRoom): running(false){
     sockets.push_back(firstSocket);
     name = nameRoom;
 }
@@ -89,18 +89,10 @@ vector<int> Room::getSockets() {
 void Room::markRunning() {
     running = true;
 }
-/**
- * set thread related to room.
- * @param thread
- */
-void Room::setThread(pthread_t& thread) {
-    Room::thread = &thread;
-}
+
 
 void Room::closeRoom() {
-    if(running) {
-        pthread_cancel(*thread);
-    }
+
     for(int i = 0; i < sockets.size(); i++){
         close(sockets[i]);
     }
