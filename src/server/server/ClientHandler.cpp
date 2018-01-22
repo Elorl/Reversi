@@ -106,7 +106,6 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
     int status = read(senderSocket, input, sizeof(input));
     //check if the read was failed.
     if (status == -1) {
-        cout << "Error reading current player move" << endl;
         return -1;
     }
     //check if the read was failed.
