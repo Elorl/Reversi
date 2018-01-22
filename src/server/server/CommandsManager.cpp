@@ -31,6 +31,7 @@ int CommandsManager::executeCommand(string command, vector<string> args) {
     if(commandsMap.find(command) == commandsMap.end()) {
         return -1;
     }
+
     //put string args and map as pointers in void* vector, and send to command
     vector<void*> commandArgs;
     commandArgs.push_back((void*)&args);

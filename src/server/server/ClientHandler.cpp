@@ -23,10 +23,10 @@ struct RoomPlayer {
 * the output: -                                                                                      *
 * the function operation: constructor                                                                *
 *****************************************************************************************************/
-ClientHandler::ClientHandler(CommandsManager *cm, map <string, Room&> *map) {
+ClientHandler::ClientHandler(CommandsManager *cm, map <string, Room&> *map, ThreadPool *tp) {
     rooms = map;
     cManager = cm;
-
+    threadPool = tp;
 }
 /*****************************************************************************************************
 * function name: handle          			                       		        	                 *
@@ -49,8 +49,15 @@ void ClientHandler::handle() {
         bool full = r->isFull();
         //check if there is an open thread to the room and if the room has 2 sockets.
         if((!running) && (full)) {
-            pthread_t thread;
+            //pthread_t thread;
             roomPlayer->room = r;
+
+            threadPool->addTask(new Task(run, roomPlayer));
+
+            //update the game was start.
+            r->markRunning();
+            //r->setThread(thread);
+            /*
             //create the thread to start the game, actually.
             int i = pthread_create(&thread, NULL, run, roomPlayer);
             if (i) {
@@ -61,6 +68,7 @@ void ClientHandler::handle() {
                 r->markRunning();
                 r->setThread(thread);
             }
+            */
         }
     }
 
@@ -88,7 +96,8 @@ void* ClientHandler::run(void *r) {
             // Close communication with the client
             roomPlayer->mapRooms->erase(room->getName());
             room->closeRoom();
-            pthread_exit(&status);
+            //pthread_exit(&status);
+            break;
         } else {
             i++;
         }

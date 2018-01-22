@@ -11,7 +11,7 @@
 #include <cstdlib>
 
 #define ILLEGAL_CHOICE -5
-
+#define BUFF_SIZE 50
 using namespace std;
 
 /*****************************************************************************************************
@@ -158,7 +158,7 @@ vector<string> Client::getGamesList() {
     const char* listGamesCommand = listGames.c_str();
 
     //write command to socket
-    int n = write(clientSocket, listGamesCommand, strlen(listGamesCommand));
+    int n = write(clientSocket, listGamesCommand, BUFF_SIZE);
     if(n == -1) {
         throw "Error writing list_games command to socket";
     }
@@ -174,7 +174,7 @@ vector<string> Client::getGamesList() {
     }
 
     //read game names
-    char buffer[50];
+    char buffer[BUFF_SIZE];
     int confirm = 1;
     for(int i = 0; i < numberOfNames; i++){
         read(clientSocket, buffer, sizeof(buffer));

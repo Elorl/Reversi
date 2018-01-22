@@ -11,6 +11,7 @@
 #include "CommandsManager.h"
 #include <map>
 #include "Room.h"
+#include "ThreadPool.h"
 
 using namespace std;
 /**
@@ -31,8 +32,9 @@ private:
     int *serverSocket; // the socket's file descriptor
     int clientSockets[2];
     vector <int> sockets;
-    vector <pthread_t> *threads;
+    //vector <pthread_t> *threads;
     pthread_t *thread;
+    ThreadPool threadPool;
     CommandsManager commandsManager;
 };
 

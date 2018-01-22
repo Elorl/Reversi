@@ -1,4 +1,5 @@
-
+#define MAX_CONNECTED_CLIENTS 10
+#define THREADS_NUM 5
 #include "Server.h"
 #include <sys/socket.h>
 #include <pthread.h>
@@ -12,12 +13,14 @@
 #include <cstdlib>
 #include <sstream>
 #include "ClientHandler.h"
+using namespace std;
 pthread_mutex_t lock;
 struct Connect {
     int *serverSock;
     int *clientSock;
     vector <int> *socketList;
-    vector <pthread_t> *threadsList;
+    pthread_t *thread;
+    ThreadPool *threadPool;
     CommandsManager *cManager;
     map <string, Room&> *roomList;
 };
@@ -33,7 +36,8 @@ using namespace std;
 * the output:                                                                                        *
 * the function operation: constructor.                                                               *
 *****************************************************************************************************/
-Server::Server(int port, CommandsManager cM): port(port), threads(new vector <pthread_t>) {
+Server::Server(int port, CommandsManager cM): port(port),
+                                              threadPool(ThreadPool(THREADS_NUM)) {
     serverSocket = new int;
     commandsManager = cM;
     commandsManager.setRooms(&rooms);
@@ -51,7 +55,8 @@ void Server::start() {
     Connect *args = new Connect;
     args->serverSock = serverSocket;
     args->socketList = &sockets;
-    args->threadsList = threads;
+    args->threadPool = &threadPool;
+    args->thread = thread;
     args->cManager = &commandsManager;
     args->roomList = &rooms;
     thread = new pthread_t;
@@ -71,14 +76,20 @@ void Server::start() {
     }
     // Start listening to incoming connections
     listen(*serverSocket, MAX_CONNECTED_CLIENTS);
+
+
     //create a thread that run the accept loop.
+
     int i = pthread_create(thread, NULL, handleConnectClient, args);
     if (i) {
         cout << "Error: unable to create thread, " << i << endl;
         exit(-1);
     }
+
     //add this thread to the threads list.
-    args->threadsList->push_back(*thread);
+
+    //threads->push_back(*thread);
+
     pthread_t exitThread;
     //create a threat that listening to the server's command line, to catch 'exit' command.
     int j = pthread_create(&exitThread, NULL, stop, args);
@@ -102,12 +113,21 @@ void* Server::stop(void *connectStruckt) {
     cin >> command;
     //check if the server got an 'exit' command.
     if(strcmp(command, "exit") == 0) {
+
+        //terminate pool
+        arg->threadPool->terminate();
+
+        //cancel accept thread
+        pthread_t *thread = arg->thread;
+        pthread_cancel(*thread);
+        /*
         vector <pthread_t> threads = *arg->threadsList;
         //close all the threads.
         for(int i=0; i < threads.size(); i++) {
             pthread_t thread = threads[i];
             pthread_cancel(thread);
         }
+         */
         //close all the rooms.
         for(iter = arg->roomList->begin(); iter != arg->roomList->end(); iter++) {
             Room r = iter->second;
@@ -145,6 +165,11 @@ void* Server::handleConnectClient(void* connectStruct) {
         //add the new socket to the sockets list.
         arg->socketList->push_back(*clientSocket);
         arg->clientSock = clientSocket;
+
+        Task *task = new Task(handleAccepts, arg);
+        arg->threadPool->addTask(task);
+
+        /*
         //create a thread that handle with this connection.
         int i = pthread_create(&pthread, NULL, handleAccepts, arg);
         if (i) {
@@ -156,6 +181,7 @@ void* Server::handleConnectClient(void* connectStruct) {
         arg->threadsList->push_back(pthread);
         int x1 = arg->threadsList->size();
         int y = arg->threadsList->size();
+        */
     }
 }
 /*****************************************************************************************************
@@ -207,7 +233,7 @@ void* Server::handleAccepts(void* connectStruct) {
     } catch (char const *s) {
         cout << s << endl;
         close(socket);
-        pthread_exit(&status);
+        //pthread_exit(&status);
     }
     //check if the command is not valid
     if(check < 0) {
@@ -215,16 +241,16 @@ void* Server::handleAccepts(void* connectStruct) {
         if (status == -1) {
             cout << "Error reading current player command" << endl;
             close(socket);
-            pthread_exit(&status);
+            //pthread_exit(&status);
         }
         //check if the read action have been failed.
         if (status == 0) {
             cout << "Current Player is disconnected" << endl;
             close(socket);
-            pthread_exit(&status);
+            //pthread_exit(&status);
         }
     } else {
-        ClientHandler clientHandler(arg->cManager, arg->roomList);
+        ClientHandler clientHandler(arg->cManager, arg->roomList, arg->threadPool);
         clientHandler.handle();
     }
 }

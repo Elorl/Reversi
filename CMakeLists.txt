@@ -9,9 +9,9 @@ set(SOURCE_FILES src/client/main.cpp src/client/Board.cpp src/client/Board.h src
 set(TEST_FILES
         # Board Test
         src/test/test_board.cpp
-        src/test/test_logic.cpp src/test/test_AiPlayer.cpp src/test/test_logic.cpp src/test/test_board.cpp src/test/test_AiPlayer.cpp src/test/gtest_main.cpp)
+        src/test/test_logic.cpp src/test/test_AiPlayer.cpp src/test/test_logic.cpp src/test/test_board.cpp src/test/test_AiPlayer.cpp src/test/gtest_main.cpp )
 
-add_executable(Reversi ${SOURCE_FILES} src/client/Client.cpp src/client/Client.h src/client/RemotePlayer.cpp src/client/RemotePlayer.h)
+add_executable(Reversi ${SOURCE_FILES} src/client/Client.cpp src/client/Client.h src/client/RemotePlayer.cpp src/client/RemotePlayer.h )
 add_executable(tests src/test/gtest_main.cpp ${TEST_FILES} ${SOURCE_FILES} src/test/test_logic.cpp src/test/test_AiPlayer.cpp src/test/test_logic.cpp src/test/test_board.cpp src/test/test_AiPlayer.cpp src/test/gtest_main.cpp src/test/gtest_ManualPlayer.cpp)
 target_link_libraries(tests gtest gtest_main)
 add_test(tests tests)
