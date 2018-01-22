@@ -42,6 +42,7 @@ void ThreadPool::executeTasks() {
 void ThreadPool::terminate() {
     pthread_mutex_destroy(&qLock);
     stopped = true;
+    pthread_cancel(*threads);
 }
 
 ThreadPool:: ~ThreadPool() {

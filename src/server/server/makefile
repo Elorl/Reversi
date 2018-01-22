@@ -2,9 +2,9 @@
 # 203090436
 
 a.out: compileAll
-	g++ *.o -o ../../../exe/server.out 
+	g++ -pthread *.o -o ../../../exe/server.out 
 	rm -f *.o
 
 compileAll: *.h *.cpp
-	g++ -c *.cpp
+	g++ -pthread -c *.cpp
 

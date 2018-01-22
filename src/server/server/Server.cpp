@@ -59,7 +59,7 @@ void Server::start() {
     args->thread = thread;
     args->cManager = &commandsManager;
     args->roomList = &rooms;
-    thread = new pthread_t;
+    args->thread = new pthread_t;
     // Create a socket point
     *serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (*serverSocket == -1) {
@@ -80,7 +80,7 @@ void Server::start() {
 
     //create a thread that run the accept loop.
 
-    int i = pthread_create(thread, NULL, handleConnectClient, args);
+    int i = pthread_create(args->thread, NULL, handleConnectClient, args);
     if (i) {
         cout << "Error: unable to create thread, " << i << endl;
         exit(-1);

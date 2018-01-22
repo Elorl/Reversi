@@ -163,5 +163,3 @@ int ClientHandler::handleClients(int senderSocket, int receiverSocket, Room *r, 
         cout<<"error writing to client socket" <<endl;
     }
 }
-
-
