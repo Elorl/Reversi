@@ -86,9 +86,6 @@ void Server::start() {
         exit(-1);
     }
 
-    //add this thread to the threads list.
-
-    //threads->push_back(*thread);
 
     pthread_t exitThread;
     //create a threat that listening to the server's command line, to catch 'exit' command.
@@ -123,14 +120,7 @@ void* Server::stop(void *connectStruckt) {
         pthread_cancel(*thread);
 
         cout<< "got exit2"<<endl;
-        /*
-        vector <pthread_t> threads = *arg->threadsList;
-        //close all the threads.
-        for(int i=0; i < threads.size(); i++) {
-            pthread_t thread = threads[i];
-            pthread_cancel(thread);
-        }
-         */
+
         //close all the rooms.
         for(iter = arg->roomList->begin(); iter != arg->roomList->end(); iter++) {
             Room r = iter->second;
@@ -174,19 +164,6 @@ void* Server::handleConnectClient(void* connectStruct) {
         Task *task = new Task(handleAccepts, arg);
         arg->threadPool->addTask(task);
 
-        /*
-        //create a thread that handle with this connection.
-        int i = pthread_create(&pthread, NULL, handleAccepts, arg);
-        if (i) {
-            cout << "Error: unable to create thread, " << i << endl;
-            exit(-1);
-        }
-        //add the new socket to the threads list.
-        int x = arg->threadsList->size();
-        arg->threadsList->push_back(pthread);
-        int x1 = arg->threadsList->size();
-        int y = arg->threadsList->size();
-        */
     }
 }
 /*****************************************************************************************************
