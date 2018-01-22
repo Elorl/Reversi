@@ -111,28 +111,31 @@ void* Server::stop(void *connectStruckt) {
     cin >> command;
     //check if the server got an 'exit' command.
     if(strcmp(command, "exit") == 0) {
+        cout<< "got exit"<<endl;
         //terminate pool
-        arg->threadPool->terminate();
-
+        //arg->threadPool->terminate();
+        cout<< "got exit1"<<endl;
         //cancel accept thread
         pthread_t *thread = arg->thread;
         pthread_cancel(*thread);
 
+        cout<< "got exit2"<<endl;
 
         //close all the rooms.
         for(iter = arg->roomList->begin(); iter != arg->roomList->end(); iter++) {
             Room r = iter->second;
             r.closeRoom();
         }
-
+        cout<< "got exit3"<<endl;
         //close all the sockets.
         vector <int> sockets = *arg->socketList;
         for(int j = 0; j < sockets.size(); j++) {
             int socket = sockets[j];
             close(socket);
         }
+        arg->threadPool->terminate();
     }
-
+    cout<< "got exitend"<<endl;
 }
 /*****************************************************************************************************
 * function name: handleConnectClient											        	         *

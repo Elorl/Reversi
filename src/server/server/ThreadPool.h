@@ -18,6 +18,7 @@ public:
     void addTask(Task *task);
     void terminate();
     virtual ~ThreadPool();
+    bool getStopped();
 private:
     queue<Task *> tasksQueue;
     pthread_t * threads;
