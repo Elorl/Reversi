@@ -17,3 +17,4 @@ public:
 
 
 #endif //REVERSI_LISTGAME_H
+

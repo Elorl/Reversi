@@ -94,7 +94,7 @@ pair<string, int> readFIle() {
     ifstream settings;
     string ip, port;
     //open the settings file.
-    settings.open("settings.txt");
+    settings.open("/home/avn/CLionProjects3/Reversi/src/client/settings.txt");
     //check if the open action was succeed.
     if(settings == NULL) {
         cout << "there is no settings file.";

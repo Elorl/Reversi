@@ -15,3 +15,4 @@ class Command {
 
 
 #endif //REVERSI_COMMAND_H
+

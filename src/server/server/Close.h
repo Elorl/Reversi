@@ -19,3 +19,4 @@ public:
 
 
 #endif //REVERSI_CLOSE_H
+

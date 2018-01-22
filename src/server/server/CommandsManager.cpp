@@ -46,3 +46,4 @@ void CommandsManager::setRooms(map<string, Room &> *roomsMap) {
 }
 
 
+

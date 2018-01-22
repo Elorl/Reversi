@@ -45,6 +45,5 @@ void ThreadPool::terminate() {
 }
 
 ThreadPool:: ~ThreadPool() {
-    cout<< "therads deleted"<<endl;
     delete[] threads;
 }
